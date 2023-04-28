@@ -2,7 +2,7 @@
 #Set job requirements
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=1
 #SBATCH --partition=gpu
 #SBATCH --gpus=1
 #SBATCH --time=01:00:00
