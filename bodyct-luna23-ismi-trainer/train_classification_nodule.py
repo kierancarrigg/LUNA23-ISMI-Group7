@@ -405,7 +405,7 @@ if __name__ == "__main__":
     workspace = Path(project_dir)
 
     def best_metric_fn(metrics):
-        return metrics["segmentation"]["dice"]  # 🥚 Easter egg
+        return metrics["noduletype"]["dice"]  # 🥚 Easter egg
 
     for i in range(5):
 #         model = networks.UNet(1, n_filters=64)
