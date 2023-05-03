@@ -416,7 +416,7 @@ if __name__ == "__main__":
 
     
 
-    for i in range(5):
+    for i in range(1, 5):
         model = networks.UNet(1, n_filters=64)
 
         nodule_analyzer = NoduleAnalyzer(
