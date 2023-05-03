@@ -1,3 +1,4 @@
+import sys
 import pandas
 import dataloader
 import torch
@@ -13,7 +14,7 @@ from typing import List
 
 
 logging = dataloader.logging
-
+project_dir = sys.argv[1]
 
 def dice_loss(input, target):
     """Function to compute dice loss
@@ -37,7 +38,7 @@ def dice_loss(input, target):
 
 def make_development_splits(
     train_set: pandas.DataFrame,
-    save_path: Path,
+    save_path: Path(project_dir+"splits/"),
     n_folds: int = 5,
 ):
     """Function to split your training set into 5 folds at a patient-level
@@ -99,7 +100,7 @@ class NoduleAnalyzer:
     def __init__(
         self,
         best_metric_fn,
-        workspace: Path,
+        workspace: Path(project_dir),
         experiment_id: int,
         fold: int = 0,
         batch_size: int = 4,
@@ -401,7 +402,7 @@ class NoduleAnalyzer:
 
 if __name__ == "__main__":
 
-    workspace = Path("/code/bodyct-luna23-ismi-trainer/")
+    workspace = Path(project_dir)
 
     def best_metric_fn(metrics):
         return metrics["segmentation"]["dice"]  # 🥚 Easter egg
