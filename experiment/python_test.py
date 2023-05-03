@@ -1,27 +1,17 @@
+import sys
+import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
 import torchvision.transforms as transforms
+import mlflow
+import mlflow.sklearn
+import lightning.pytorch as pl
 
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+import logging
 
-batch_size = 4
-
-trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                        download=True, transform=transform)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
-                                          shuffle=True, num_workers=2)
-
-testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                       download=True, transform=transform)
-testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
-                                         shuffle=False, num_workers=2)
-
-classes = ('plane', 'car', 'bird', 'cat',
-           'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+project_dir = sys.argv[1]
 
 class Net(nn.Module):
     def __init__(self):
@@ -42,6 +32,33 @@ class Net(nn.Module):
         x = self.fc3(x)
         return x
 
+class LitConvNet(pl.LightningModule):
+    def __init__(self, network):
+        super().__init__()
+        self.net = network
+
+    def training_step(self, batch, batch_idx):
+        x, y = batch
+
+transform = transforms.Compose(
+    [transforms.ToTensor(),
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+batch_size = 4
+
+trainset = torchvision.datasets.CIFAR10(root=project_dir + 'data', train=True,
+                                        download=True, transform=transform)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
+                                          shuffle=True, num_workers=2)
+
+testset = torchvision.datasets.CIFAR10(root=project_dir + 'data', train=False,
+                                       download=True, transform=transform)
+testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
+                                         shuffle=False, num_workers=2)
+
+classes = ('plane', 'car', 'bird', 'cat',
+           'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 # Assuming that we are on a CUDA machine, this should print a CUDA device:
@@ -53,8 +70,12 @@ net.to(device)
 
 import torch.optim as optim
 
+lr = 0.001
+momentum = 0.9
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+optimizer = optim.SGD(net.parameters(), lr=lr, momentum=momentum)
+
+mlflow.autolog()
 
 for epoch in range(2):  # loop over the dataset multiple times
 
@@ -72,13 +93,30 @@ for epoch in range(2):  # loop over the dataset multiple times
         loss.backward()
         optimizer.step()
 
-        # print statistics
+        # print statistics                                                      
         running_loss += loss.item()
         if i % 2000 == 1999:    # print every 2000 mini-batches
             print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 2000:.3f}')
             running_loss = 0.0
 
+mlflow.log_param('lr', lr)
+mlflow.log_param('momentum', momentum)
+mlflow.log_metric('loss', loss)
+mlflow.log_metric('running loss', running_loss)
+
+tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+
+# Model registry does not work with file store
+if tracking_url_type_store != "file":
+    # Register the model
+    # There are other ways to use the Model Registry, which depends on the use case,
+    # please refer to the doc for more information:
+    # https://mlflow.org/docs/latest/model-registry.html#api-workflow
+    mlflow.sklearn.log_model(net, "model", registered_model_name="ElasticnetWineModel")
+else:
+    mlflow.sklearn.log_model(net, "model")
+
 print('Finished Training')
 
-PATH = './cifar_net.pth'
+PATH = project_dir + 'cifar_net.pth'
 torch.save(net.state_dict(), PATH)
