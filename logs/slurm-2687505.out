@@ -1,0 +1,20 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: SimpleITK in /gpfs/home5/ssommers/.local/lib/python3.9/site-packages (2.2.1)
+WARNING: You are using pip version 21.1.1; however, version 23.1.2 is available.
+You should consider upgrading via the '/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/bin/python3.9 -m pip install --upgrade pip' command.
+cp: cannot stat 'bodyct-luna23-ismi-trainer/train.py': No such file or directory
+python: can't open file '/scratch-shared/ssommers/train_classification_nodule.py': [Errno 2] No such file or directory
+
+JOB STATISTICS
+==============
+Job ID: 2687505
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:03
+CPU Efficiency: 0.43% of 00:11:42 core-walltime
+Job Wall-clock time: 00:00:39
+Memory Utilized: 4.48 MB
+Memory Efficiency: 0.01% of 64.00 GB
