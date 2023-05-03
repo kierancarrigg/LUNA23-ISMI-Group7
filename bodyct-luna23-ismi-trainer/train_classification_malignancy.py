@@ -417,15 +417,21 @@ if __name__ == "__main__":
     
 
     for i in range(1, 5):
-        model = networks.UNet(1, n_filters=64)
+#         model = networks.UNet(1, n_filters=64)
+        ## uncomment the following block for the classification tasks
+        model = networks.CNN3D(
+            n_input_channels=1,
+            n_output_channels=1,  # set output channels to 4 for noduletype classification
+            task="malignancy",
+        )
 
         nodule_analyzer = NoduleAnalyzer(
             workspace=workspace,
             best_metric_fn=best_metric_fn,
-            experiment_id="0_segmentation",  # give your experiment a unique ID, for each run
+            experiment_id="0_malignancy",  # give your experiment a unique ID, for each run
             batch_size=4,  # increase batch size to 32 for the classification tasks
             fold=i,  # 🥚 Easter egg
             max_epochs=100,  # set max epochs to 1000 for the classification tasks
-            tasks=["segmentation"],  # 🥚 Easter egg
+            tasks=["malignancy"],  # 🥚 Easter egg
         )
         nodule_analyzer.train(model)  # 🥚 Easter egg
