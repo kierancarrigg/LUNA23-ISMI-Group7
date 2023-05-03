@@ -420,9 +420,9 @@ if __name__ == "__main__":
             workspace=workspace,
             best_metric_fn=best_metric_fn,
             experiment_id="0_noduletype",  # give your experiment a unique ID, for each run
-            batch_size=4,  # increase batch size to 32 for the classification tasks
+            batch_size=32,  # increase batch size to 32 for the classification tasks
             fold=i,  # 🥚 Easter egg
-            max_epochs=100,  # set max epochs to 1000 for the classification tasks
+            max_epochs=1000,  # set max epochs to 1000 for the classification tasks
             tasks=["noduletype"],  # 🥚 Easter egg
         )
         nodule_analyzer.train(model)  # 🥚 Easter egg
