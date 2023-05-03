@@ -20,7 +20,7 @@ cp -r luna23-ismi-train-set.csv /scratch-shared/ssommers/data/
 cp -r bodyct-luna23-ismi-trainer/networks.py /scratch-shared/ssommers/
 cp -r bodyct-luna23-ismi-trainer/dataloader.py /scratch-shared/ssommers/
 cp -r bodyct-luna23-ismi-trainer/inference.py /scratch-shared/ssommers/
-cp -r bodyct-luna23-ismi-trainer/train.py /scratch-shared/ssommers/
+cp -r bodyct-luna23-ismi-trainer/train_segmentation.py /scratch-shared/ssommers/
 
 # Set project directory to scratch space
 project_dir=/scratch-shared/ssommers/
