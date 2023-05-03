@@ -2,9 +2,10 @@
 #Set job requirements
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=18
 #SBATCH --partition=gpu
 #SBATCH --gpus=1
+#SBATCH --mem=64G
 #SBATCH --time=01:00:00
 
 # Load modules
@@ -26,3 +27,6 @@ project_dir=/scratch-shared/ssommers/
 
 # Execute program
 python /scratch-shared/ssommers/train.py $project_dir
+
+# Copy results from scratch space
+cp -r /scratch-shared/ssommers/results/ .
