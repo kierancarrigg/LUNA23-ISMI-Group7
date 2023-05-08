@@ -416,7 +416,7 @@ if __name__ == "__main__":
 
     
 
-    for i in range(1, 5):
+    for i in range(5):
 #         model = networks.UNet(1, n_filters=64)
         ## uncomment the following block for the classification tasks
         model = networks.CNN3D(
