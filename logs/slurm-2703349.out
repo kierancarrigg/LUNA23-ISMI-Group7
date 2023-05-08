@@ -1,0 +1,4 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: SimpleITK in /gpfs/home5/ssommers/.local/lib/python3.9/site-packages (2.2.1)
+WARNING: You are using pip version 21.1.1; however, version 23.1.2 is available.
+You should consider upgrading via the '/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/bin/python3.9 -m pip install --upgrade pip' command.

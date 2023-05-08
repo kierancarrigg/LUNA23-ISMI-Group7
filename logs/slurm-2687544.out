@@ -1,0 +1,46 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: SimpleITK in /gpfs/home5/ssommers/.local/lib/python3.9/site-packages (2.2.1)
+WARNING: You are using pip version 21.1.1; however, version 23.1.2 is available.
+You should consider upgrading via the '/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/bin/python3.9 -m pip install --upgrade pip' command.
+[INFO][07:05:17]  training, epoch: 1 / 100, with fold: 0
+[INFO][07:05:17] Tasks being trained: ['noduletype']
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  1%|          | 1/135 [00:03<07:41,  3.45s/it] 11%|█         | 15/135 [00:03<00:20,  5.85it/s] 18%|█▊        | 24/135 [00:03<00:12,  8.92it/s] 22%|██▏       | 30/135 [00:04<00:10, 10.41it/s] 25%|██▌       | 34/135 [00:04<00:09, 10.42it/s] 31%|███       | 42/135 [00:04<00:06, 15.12it/s] 34%|███▍      | 46/135 [00:05<00:05, 16.03it/s] 38%|███▊      | 51/135 [00:05<00:05, 15.57it/s] 44%|████▎     | 59/135 [00:05<00:04, 18.55it/s] 50%|████▉     | 67/135 [00:05<00:03, 21.81it/s] 56%|█████▌    | 75/135 [00:06<00:02, 23.61it/s] 59%|█████▉    | 80/135 [00:06<00:02, 26.68it/s] 62%|██████▏   | 84/135 [00:06<00:01, 25.65it/s] 67%|██████▋   | 91/135 [00:06<00:01, 31.90it/s] 73%|███████▎  | 98/135 [00:06<00:00, 38.83it/s] 76%|███████▋  | 103/135 [00:07<00:01, 27.04it/s] 80%|████████  | 108/135 [00:07<00:00, 27.98it/s] 86%|████████▌ | 116/135 [00:07<00:00, 26.33it/s] 92%|█████████▏| 124/135 [00:07<00:00, 33.11it/s] 98%|█████████▊| 132/135 [00:07<00:00, 35.09it/s]100%|██████████| 135/135 [00:08<00:00, 16.44it/s]
+[INFO][07:05:26]  validation, epoch: 1 / 100, with fold: 0
+[INFO][07:05:26] Tasks being trained: ['noduletype']
++-------------------+--------------+--------------+
+|                   |   noduletype | cumulative   |
++===================+==============+==============+
+| loss              |        1.272 | 1.272        |
++-------------------+--------------+--------------+
+| balanced_accuracy |        0.467 |              |
++-------------------+--------------+--------------+
+
+
+
+  0%|          | 0/37 [00:00<?, ?it/s]  3%|▎         | 1/37 [00:00<00:26,  1.38it/s] 24%|██▍       | 9/37 [00:01<00:02,  9.92it/s] 43%|████▎     | 16/37 [00:01<00:01, 18.26it/s] 54%|█████▍    | 20/37 [00:01<00:01, 14.64it/s] 68%|██████▊   | 25/37 [00:01<00:00, 14.78it/s] 81%|████████  | 30/37 [00:02<00:00, 19.19it/s] 92%|█████████▏| 34/37 [00:02<00:00, 18.04it/s]100%|██████████| 37/37 [00:02<00:00, 15.80it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train_classification_nodule.py", line 428, in <module>
+    nodule_analyzer.train(model)  # 🥚 Easter egg
+  File "/scratch-shared/ssommers/train_classification_nodule.py", line 381, in train
+    if self.best_metric_fn(metrics) > best_metric:
+  File "/scratch-shared/ssommers/train_classification_nodule.py", line 408, in best_metric_fn
+    return metrics["noduletype"]["dice"]  # 🥚 Easter egg
+KeyError: 'dice'
+
+JOB STATISTICS
+==============
+Job ID: 2687544
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:15:54 core-walltime
+Job Wall-clock time: 00:00:53
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
