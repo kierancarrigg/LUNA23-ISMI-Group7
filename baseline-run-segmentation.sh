@@ -13,8 +13,6 @@
 module load 2021
 module load Python/3.9.5-GCCcore-10.3.0
 
-pip install SimpleITK
-
 # Copy files to local scratch space
 cp -r data/ /scratch-shared/ssommers/
 cp -r luna23-ismi-train-set.csv /scratch-shared/ssommers/data/
