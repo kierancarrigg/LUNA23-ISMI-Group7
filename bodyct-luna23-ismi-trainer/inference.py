@@ -1,3 +1,5 @@
+
+import sys
 import torch
 import networks
 import dataloader
@@ -212,6 +214,6 @@ def perform_inference_on_test_set(workspace: Path):
 
 if __name__ == "__main__":
 
-    workspace = Path("/code/bodyct-luna23-ismi-trainer")
-
+    project_dir = sys.argv[1]
+    workspace = Path(project_dir)
     perform_inference_on_test_set(workspace=workspace)
