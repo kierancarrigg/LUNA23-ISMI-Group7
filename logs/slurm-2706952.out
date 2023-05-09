@@ -1,0 +1,10 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: SimpleITK in /gpfs/home5/ssommers/.local/lib/python3.9/site-packages (2.2.1)
+WARNING: You are using pip version 21.1.1; however, version 23.1.2 is available.
+You should consider upgrading via the '/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/bin/python3.9 -m pip install --upgrade pip' command.
+[INFO][10:26:30]  training, epoch: 1 / 1000, with fold: 0
+[INFO][10:26:30] Tasks being trained: ['malignancy']
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]  6%|▌         | 1/17 [00:09<02:36,  9.76s/it] 24%|██▎       | 4/17 [00:09<00:24,  1.88s/it] 41%|████      | 7/17 [00:10<00:08,  1.11it/s] 53%|█████▎    | 9/17 [00:12<00:07,  1.04it/s] 65%|██████▍   | 11/17 [00:12<00:04,  1.46it/s] 76%|███████▋  | 13/17 [00:12<00:02,  1.81it/s] 88%|████████▊ | 15/17 [00:13<00:00,  2.52it/s]
