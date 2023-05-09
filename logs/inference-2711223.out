@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/inference.py", line 215, in <module>
+    project_dir = sys.argv[1]
+NameError: name 'sys' is not defined
+cp: cannot stat '/scratch-shared/ssommers/results/test_set_predictions/': No such file or directory
+
+JOB STATISTICS
+==============
+Job ID: 2711223
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:07
+CPU Efficiency: 0.85% of 00:13:48 core-walltime
+Job Wall-clock time: 00:00:46
+Memory Utilized: 197.68 MB
+Memory Efficiency: 0.30% of 64.00 GB
