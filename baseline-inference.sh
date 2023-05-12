@@ -19,7 +19,7 @@ cp -r bodyct-luna23-ismi-trainer/networks.py /scratch-shared/ssommers/
 cp -r bodyct-luna23-ismi-trainer/dataloader.py /scratch-shared/ssommers/
 cp -r bodyct-luna23-ismi-trainer/inference.py /scratch-shared/ssommers/
 cp -r results/ /scratch-shared/ssommers/
-mkdir /scratch-shared/ssommers/results/test_set_predictions/
+mkdir /scratch-shared/ssommers/results/test_set_predictions5/
 
 # Set project directory to scratch space
 project_dir=/scratch-shared/ssommers/
@@ -28,4 +28,4 @@ project_dir=/scratch-shared/ssommers/
 python /scratch-shared/ssommers/inference.py $project_dir
 
 # Copy results from scratch space
-cp -r /scratch-shared/ssommers/results/test_set_predictions/ results/
+cp -r /scratch-shared/ssommers/results/test_set_predictions5/ results/

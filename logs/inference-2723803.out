@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/inference.py", line 219, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/inference.py", line 67, in perform_inference_on_test_set
+    ckpt = torch.load(
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch-shared/ssommers/results/20230503_0_segmentation/fold5/best_model.pth'
+
+JOB STATISTICS
+==============
+Job ID: 2723803
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:08
+CPU Efficiency: 0.71% of 00:18:54 core-walltime
+Job Wall-clock time: 00:01:03
+Memory Utilized: 2.75 MB
+Memory Efficiency: 0.00% of 64.00 GB

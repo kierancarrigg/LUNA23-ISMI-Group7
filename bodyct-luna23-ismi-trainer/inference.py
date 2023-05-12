@@ -65,20 +65,20 @@ def perform_inference_on_test_set(workspace: Path):
 
     # ⚠️ make sure to adjust these paths
     ckpt = torch.load(
-        workspace / "results/20230503_0_segmentation/fold0/best_model.pth"
+        workspace / "results/20230503_0_segmentation/fold5/best_model.pth"
     )
     segmentation_model.load_state_dict(ckpt)
 
     # ⚠️ make sure to adjust these paths
-    ckpt = torch.load(workspace / "results/20230509_0_malignancy/fold0/best_model.pth")
+    ckpt = torch.load(workspace / "results/20230509_0_malignancy/fold5/best_model.pth")
     malignancy_model.load_state_dict(ckpt)
 
     # ⚠️ make sure to adjust these paths
-    ckpt = torch.load(workspace / "results/20230503_0_noduletype/fold0/best_model.pth")
+    ckpt = torch.load(workspace / "results/20230503_0_noduletype/fold5/best_model.pth")
     noduletype_model.load_state_dict(ckpt)
 
     test_set_path = Path(workspace / "data" / "test_set" / "images")
-    save_path = workspace / "results" / "test_set_predictions"
+    save_path = workspace / "results" / "test_set_predictions4"
 
     segmentation_save_path = save_path / "segmentations"
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
