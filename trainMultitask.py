@@ -5,7 +5,7 @@ import torch
 import torch.nn.functional as F
 from pathlib import Path
 from tqdm import tqdm
-import multitask_network
+import multitaskNetwork
 import numpy as np
 from datetime import datetime
 from sklearn.model_selection import StratifiedKFold
@@ -415,7 +415,7 @@ if __name__ == "__main__":
     # )
 
     for i in range(1): #aangepast
-        model = multitask_network.UNet(1, n_filters=64)
+        model = multitaskNetwork.UNet(1, n_filters=64)
 
         nodule_analyzer = NoduleAnalyzer(
             workspace=workspace,

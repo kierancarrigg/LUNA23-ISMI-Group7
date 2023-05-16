@@ -59,7 +59,7 @@ class UNet(nn.Module):
         n_filters,
         n_output_channels=1,
         dropout=None,
-        sigmoid=True,
+        sigmoid=False,
     ):
         super().__init__()
 
@@ -97,7 +97,7 @@ class UNet(nn.Module):
             y = contract(y)
             cf.append(y)
 
-        print('Intermediate y', y.shape)
+        print('Intermediate y', y)
 
         # Pass features through expansion path
         for expand, features in zip(self.expansion, reversed(cf[:-1])):
@@ -109,8 +109,8 @@ class UNet(nn.Module):
 
         outputs = {"segmentation": segmentation, "features": cf[-1]}
 
-        print('outputs', segmentation.shape)
-        print('features', features.shape)
+        print('outputs', segmentation)
+        print('features', features)
 
         return outputs
 
