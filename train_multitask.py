@@ -1,6 +1,6 @@
 import sys
 import pandas
-import dataloader_duplicate
+import dataloaderDuplicate
 import torch
 import torch.nn.functional as F
 from pathlib import Path
@@ -13,7 +13,7 @@ import sklearn.metrics as skl_metrics
 from typing import List
 
 
-logging = dataloader_duplicate.logging
+logging = dataloaderDuplicate.logging
 project_dir = sys.argv[1]
 
 def dice_loss(input, target):
@@ -167,13 +167,13 @@ class NoduleAnalyzer:
 
         if "malignancy" in self.tasks:
             x = self.train_df.malignancy.values
-            x = dataloader_duplicate.make_weights_for_balanced_classes(x)
+            x = dataloaderDuplicate.make_weights_for_balanced_classes(x)
             weights = x
 
         if "noduletype" in self.tasks:
             y = self.train_df.noduletype.values
-            y = [dataloader_duplicate.NODULETYPE_MAPPING[t] for t in y]
-            y = dataloader_duplicate.make_weights_for_balanced_classes(y)
+            y = [dataloaderDuplicate.NODULETYPE_MAPPING[t] for t in y]
+            y = dataloaderDuplicate.make_weights_for_balanced_classes(y)
             weights = y
 
         if "malignancy" in self.tasks and "noduletype" in self.tasks:
@@ -189,7 +189,7 @@ class NoduleAnalyzer:
         if self.tasks == ["segmentation"]:
             sampler = None
 
-        self.train_loader = dataloader_duplicate.get_data_loader(
+        self.train_loader = dataloaderDuplicate.get_data_loader(
             self.workspace / "data" / "train_set",
             self.train_df,
             sampler=sampler,
@@ -202,7 +202,7 @@ class NoduleAnalyzer:
             patch_size=self.patch_size,
         )
 
-        self.valid_loader = dataloader_duplicate.get_data_loader(
+        self.valid_loader = dataloaderDuplicate.get_data_loader(
             self.workspace / "data" / "train_set",
             self.valid_df,
             workers=self.num_workers // 2,
