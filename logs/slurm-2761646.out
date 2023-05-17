@@ -1,0 +1,23 @@
+cp: cannot stat 'luna23-ismi-train-set.csv': No such file or directory
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 357, in <module>
+    model = probeersel.MultiTaskNetwork(n_input_channels=10, n_filters=10, dropout=True)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 132, in __init__
+    self.nodule_type = self.NoduleTypeBlock(n_input_channels, n_filters, dropout)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 90, in __init__
+    layers += nn.Linear(n_filters, n_filters)
+TypeError: unsupported operand type(s) for +=: 'Linear' and 'Linear'
+
+JOB STATISTICS
+==============
+Job ID: 2761646
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:07
+CPU Efficiency: 1.05% of 00:11:06 core-walltime
+Job Wall-clock time: 00:00:37
+Memory Utilized: 286.38 MB
+Memory Efficiency: 0.44% of 64.00 GB

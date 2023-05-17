@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 357, in <module>
+    model = probeersel.MultiTaskNetwork(n_input_channels=10, n_filters=10, dropout=True)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 132, in __init__
+    self.nodule_type = self.NoduleTypeBlock(n_input_channels, n_filters, dropout)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 93, in __init__
+    layers.append(nn.Linear(n_filters, n_classes))
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 96, in __init__
+    self.weight = Parameter(torch.empty((out_features, in_features), **factory_kwargs))
+TypeError: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+ * (tuple of ints size, *, tuple of names names, torch.memory_format memory_format, torch.dtype dtype, torch.layout layout, torch.device device, bool pin_memory, bool requires_grad)
+ * (tuple of ints size, *, torch.memory_format memory_format, Tensor out, torch.dtype dtype, torch.layout layout, torch.device device, bool pin_memory, bool requires_grad)
+
+
+JOB STATISTICS
+==============
+Job ID: 2761703
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:07
+CPU Efficiency: 1.14% of 00:10:12 core-walltime
+Job Wall-clock time: 00:00:34
+Memory Utilized: 1.41 MB
+Memory Efficiency: 0.00% of 64.00 GB
