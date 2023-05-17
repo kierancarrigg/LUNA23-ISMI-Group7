@@ -84,13 +84,13 @@ class MultiTaskNetwork(nn.Module):
             Nodule type decoder that is a fully connected network with the output being the probability per possible class
             Currently: 2 layer network where you have input layer, hidden layer and output layer with output being probability per class
             """
-            layers = nn.Linear(n_input_channels, n_filters)
+            layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers += nn.Linear(n_filters, n_filters)
+            layers.append(nn.Linear(n_filters, n_filters))
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers += nn.Linear(n_filters, n_classes)
+            layers.append(nn.Linear(n_filters, n_classes))
             self.conv = nn.Sequential(*layers)
 
         def forward(self, incoming):
@@ -104,13 +104,13 @@ class MultiTaskNetwork(nn.Module):
             Malignancy block that is a fully connected network with the output being the label 0 or 1
             Currently: Fully connected 2 layers where you have input layer, hidden layer and output layer
             """
-            layers = nn.Linear(n_input_channels, n_filters)
+            layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers += nn.Linear(n_filters, n_filters)
+            layers.append(nn.Linear(n_filters, n_filters))
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers += nn.Linear(n_filters, 1)
+            layers.append(nn.Linear(n_filters, 1))
             self.conv = nn.Sequential(*layers)
 
         def forward(self, incoming):
@@ -133,6 +133,9 @@ class MultiTaskNetwork(nn.Module):
         self.malignant = self.MalignancyBlock(n_input_channels, n_filters, dropout)
 
     def forward(self, incoming):
+        # Moet nog omgebouwd worden want nu missen we de meerdere hoeveelheden contraction en 
+        # segmentation blocks, en gebeurt er niks met skip connections.
+        # Originele U-net code gaf ook de intermediate features bij output dus wellicht die alsnog gebruiken?
         latent = self.contraction(incoming)
         seg = self.segmentation(latent)
         noduletype = self.nodule_type(latent)

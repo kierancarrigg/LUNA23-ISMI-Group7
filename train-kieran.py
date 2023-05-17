@@ -124,7 +124,7 @@ class NoduleAnalyzer:
         self.exp_id = f"{date}_{experiment_id}"
 
         self.fold = fold
-        # self.tasks = tasks
+        self.tasks = ['segmentation', 'nodule-type', 'malignancy']
 
         train_df_path = workspace / "data" / "luna23-ismi-train-set.csv"
         make_development_splits(
@@ -207,6 +207,7 @@ class NoduleAnalyzer:
             batch_data["noduletype_target"].to(self.device),
             batch_data["malignancy_target"].to(self.device),
         )
+        print("images shape", images.shape)
 
         targets, losses = {}, {}
 
@@ -217,17 +218,17 @@ class NoduleAnalyzer:
 
         seg_loss, type_loss, malig_loss, overall_loss = self.model.losses([masks, noduletype_targets, malignancy_targets], outputs) # zoiets
 
-        losses["malignancy"] = malig_loss.item()
-        outputs["malignancy"] = outputs["malignancy"].data.cpu().numpy().reshape(-1)
-        targets["malignancy"] = malignancy_targets.data.cpu().numpy().reshape(-1)
-
-        losses["noduletype"] = type_loss.item()
-        outputs["nodule-type"] = (outputs["nodule-type"].data.cpu().numpy().reshape(-1, 4))
-        targets["noduletype"] = noduletype_targets.data.cpu().numpy().reshape(-1)
-
         losses["segmentation"] = seg_loss.item()
         outputs["segmentation"] = outputs["segmentation"]
         targets["segmentation"] = masks.data.cpu().numpy()
+        
+        losses["nodule-type"] = type_loss.item()
+        outputs["nodule-type"] = (outputs["nodule-type"].data.cpu().numpy().reshape(-1, 4))
+        targets["nodule-type"] = noduletype_targets.data.cpu().numpy().reshape(-1)
+        
+        losses["malignancy"] = malig_loss.item()
+        outputs["malignancy"] = outputs["malignancy"].data.cpu().numpy().reshape(-1)
+        targets["malignancy"] = malignancy_targets.data.cpu().numpy().reshape(-1)
 
         losses["total"] = overall_loss.item()
 
@@ -269,13 +270,13 @@ class NoduleAnalyzer:
                     self.model.eval()
                     data = self.valid_loader
 
-                # metrics = {task: {"loss": [],}
-                #     for task in self.tasks
-                # }
-                # metrics["cumulative"] = {"loss": []}
+                metrics = {task: {"loss": [],}
+                    for task in self.tasks
+                }
+                metrics["cumulative"] = {"loss": []}
 
-                # predictions = {task: [] for task in self.tasks}
-                # labels = {task: [] for task in self.tasks}
+                predictions = {task: [] for task in self.tasks}
+                labels = {task: [] for task in self.tasks}
 
                 for batch_data in tqdm(data):
 
@@ -309,32 +310,23 @@ class NoduleAnalyzer:
 
                 metrics["cumulative"]["loss"] = np.mean(metrics["cumulative"]["loss"])
 
-                if "malignancy" in self.tasks:
+                x = predictions["malignancy"]
+                y = labels["malignancy"]
+                metrics["malignancy"]["auc"] = skl_metrics.roc_auc_score(y, x)
 
-                    x = predictions["malignancy"]
-                    y = labels["malignancy"]
-                    metrics["malignancy"]["auc"] = skl_metrics.roc_auc_score(y, x)
+                x = [p.argmax() for p in predictions["nodule-type"]]
+                y = labels["nodule-type"]
+                metrics["nodule-type"]["balanced_accuracy"] = skl_metrics.balanced_accuracy_score(y, x)
 
-                if "noduletype" in self.tasks:
-
-                    x = [p.argmax() for p in predictions["noduletype"]]
-                    y = labels["noduletype"]
-
-                    metrics["noduletype"][
-                        "balanced_accuracy"
-                    ] = skl_metrics.balanced_accuracy_score(y, x)
-
-                if "segmentation" in self.tasks:
-
-                    dice = 1 - np.mean(metrics["segmentation"]["loss"])
-                    metrics["segmentation"]["dice"] = dice
+                dice = 1 - np.mean(metrics["segmentation"]["loss"])
+                metrics["segmentation"]["dice"] = dice
 
                 epoch_metrics[mode].append(metrics)
 
                 if mode == "validation":
 
                     if self.best_metric_fn(metrics) > best_metric:
-
+                    # Wanneer model opslaan? Bij welke metric als beste?
                         print("\n===== Saving best model! =====\n")
                         best_metric = self.best_metric_fn(metrics)
                         best_epoch = epoch
@@ -357,7 +349,17 @@ class NoduleAnalyzer:
 if __name__ == "__main__":
     workspace = Path(project_dir)
 
-    model = MultiTaskNetwork(n_input_channels=10, n_filters=10, dropout=True)
+    def best_metric_fn(metrics):
+        return 0.5 * metrics["malignancy"]["auc"] + 0.25 * metrics["nodule-type"]["balanced_accuracy"] + 0.25 * metrics["segmentation"]["dice"]
+        # return metrics["malignancy"]["auc"]  # 🥚 Easter egg
+
+
+    model = probeersel.MultiTaskNetwork(n_input_channels=10, n_filters=10, dropout=True)
     
-    nodule_analyzer = NoduleAnalyzer()
+    nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
+                                     best_metric_fn=best_metric_fn, 
+                                     experiment_id="0_multitask_model", 
+                                     batch_size=32, 
+                                     fold=0, 
+                                     max_epochs=1000)
     nodule_analyzer.train(model)
