@@ -1,0 +1,33 @@
+[INFO][05:05:25]  training, epoch: 1 / 10, with fold: 0
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]  6%|▌         | 1/17 [01:13<19:32, 73.27s/it]  6%|▌         | 1/17 [01:13<19:38, 73.64s/it]
+images shape torch.Size([32, 1, 64, 64, 64])
+images shape torch.Size([32, 1, 64, 64, 64])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 365, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 285, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran.py", line 236, in forward
+    overall_loss.backward()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/autograd/__init__.py", line 200, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB (GPU 0; 39.45 GiB total capacity; 36.32 GiB already allocated; 1.85 GiB free; 37.08 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+JOB STATISTICS
+==============
+Job ID: 2771979
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:02:58
+CPU Efficiency: 9.60% of 00:30:54 core-walltime
+Job Wall-clock time: 00:01:43
+Memory Utilized: 4.08 GB
+Memory Efficiency: 6.38% of 64.00 GB

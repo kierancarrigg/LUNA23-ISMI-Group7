@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 357, in <module>
+    model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 133, in __init__
+    ContractionBlock(
+NameError: name 'ContractionBlock' is not defined
+cp: cannot stat '/scratch-shared/ssommers/results/': No such file or directory
+
+JOB STATISTICS
+==============
+Job ID: 2771774
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:11:06 core-walltime
+Job Wall-clock time: 00:00:37
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

@@ -1,0 +1,48 @@
+[INFO][04:29:17]  training, epoch: 1 / 10, with fold: 0
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]/gpfs/scratch1/shared/ssommers/probeersel.py:100: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  return F.softmax(y)
+  0%|          | 0/17 [00:12<?, ?it/s]
+images shape torch.Size([32, 1, 64, 64, 64])
+0
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+1
+incoming shape: torch.Size([32, 64, 64, 64, 64])
+2
+incoming shape: torch.Size([32, 128, 32, 32, 32])
+3
+incoming shape: torch.Size([32, 256, 16, 16, 16])
+4
+incoming shape: torch.Size([32, 512, 8, 8, 8])
+Latent shape torch.Size([32, 1024, 4, 4, 4])
+outputs torch.Size([32, 1, 64, 64, 64])
+latent features torch.Size([32, 1024, 4, 4, 4])
+flattened latent torch.Size([32, 65536])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 365, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 285, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran.py", line 219, in forward
+    seg_loss, type_loss, malig_loss, overall_loss = self.model.loss(masks, noduletype_targets, malignancy_targets, outputs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 215, in loss
+    type_loss = F.cross_entropy(result_noduletype, noduletype_labels)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/functional.py", line 3029, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(input, target, weight, _Reduction.get_enum(reduction), ignore_index, label_smoothing)
+RuntimeError: 0D or 1D target tensor expected, multi-target not supported
+
+JOB STATISTICS
+==============
+Job ID: 2771909
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:59
+CPU Efficiency: 11.60% of 00:17:06 core-walltime
+Job Wall-clock time: 00:00:57
+Memory Utilized: 284.33 MB
+Memory Efficiency: 0.43% of 64.00 GB

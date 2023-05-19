@@ -1,0 +1,112 @@
+[INFO][04:53:02]  training, epoch: 1 / 10, with fold: 0
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]  0%|          | 0/17 [00:11<?, ?it/s]
+images shape torch.Size([32, 1, 64, 64, 64])
+0
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+1
+incoming shape: torch.Size([32, 64, 64, 64, 64])
+2
+incoming shape: torch.Size([32, 128, 32, 32, 32])
+3
+incoming shape: torch.Size([32, 256, 16, 16, 16])
+4
+incoming shape: torch.Size([32, 512, 8, 8, 8])
+Latent shape torch.Size([32, 1024, 4, 4, 4])
+outputs torch.Size([32, 1, 64, 64, 64])
+latent features torch.Size([32, 1024, 4, 4, 4])
+flattened latent torch.Size([32, 65536])
+nodule-type output shape: tensor([[ 0.0829, -0.0253, -0.1627, -0.0539],
+        [ 0.0612, -0.1400, -0.1375, -0.0390],
+        [ 0.2149, -0.1974,  0.0234,  0.2315],
+        [ 0.1735, -0.1786, -0.0344,  0.0490],
+        [ 0.2643, -0.0887,  0.0568,  0.1719],
+        [ 0.1439, -0.1650, -0.1685,  0.0749],
+        [ 0.1212, -0.2560, -0.1166,  0.0408],
+        [ 0.3203, -0.2539, -0.0191,  0.0702],
+        [ 0.0761, -0.1920, -0.2197,  0.1533],
+        [ 0.1568, -0.0809, -0.0338,  0.0553],
+        [ 0.2247, -0.0398, -0.0946, -0.0729],
+        [ 0.1047, -0.1929, -0.0630,  0.0244],
+        [-0.0203, -0.1744,  0.0141,  0.0029],
+        [ 0.2151, -0.0930,  0.0210,  0.0341],
+        [ 0.1158, -0.0991,  0.0336,  0.2729],
+        [ 0.1283, -0.1995, -0.0797, -0.0475],
+        [ 0.2385, -0.1230, -0.1053,  0.1618],
+        [ 0.0542, -0.0329, -0.1453,  0.1829],
+        [ 0.0608, -0.0531, -0.0780, -0.0433],
+        [ 0.1459, -0.1041, -0.0342, -0.0343],
+        [ 0.4263, -0.1048, -0.0617,  0.3456],
+        [ 0.1157, -0.0896, -0.0424,  0.2698],
+        [-0.0273, -0.0800, -0.0560, -0.0371],
+        [ 0.0783, -0.0999, -0.1045, -0.0999],
+        [ 0.1897, -0.1356,  0.0580,  0.2094],
+        [ 0.0044, -0.1018,  0.0065, -0.0137],
+        [ 0.1814, -0.1678, -0.0545, -0.0099],
+        [ 0.2010, -0.0331, -0.0790,  0.1270],
+        [ 0.1896, -0.1255, -0.0472, -0.0649],
+        [ 0.2387, -0.1110, -0.1483,  0.0711],
+        [ 0.1709, -0.0563,  0.0203, -0.0560],
+        [ 0.3348, -0.0215,  0.0160,  0.0546]], device='cuda:0',
+       grad_fn=<AddmmBackward0>)
+malignancy output shape: tensor([[0.5349],
+        [0.5397],
+        [0.5621],
+        [0.5232],
+        [0.5323],
+        [0.5499],
+        [0.5548],
+        [0.5376],
+        [0.5382],
+        [0.5384],
+        [0.5407],
+        [0.5486],
+        [0.5842],
+        [0.5229],
+        [0.5284],
+        [0.5337],
+        [0.5378],
+        [0.5250],
+        [0.5256],
+        [0.5498],
+        [0.5510],
+        [0.5736],
+        [0.5407],
+        [0.5319],
+        [0.5495],
+        [0.5048],
+        [0.5289],
+        [0.5358],
+        [0.5182],
+        [0.5530],
+        [0.5393],
+        [0.5541]], device='cuda:0', grad_fn=<SigmoidBackward0>)
+noduletype labels shape torch.Size([32, 1])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 365, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 285, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran.py", line 219, in forward
+    seg_loss, type_loss, malig_loss, overall_loss = self.model.loss(masks, noduletype_targets, malignancy_targets, outputs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 219, in loss
+    type_loss = F.cross_entropy(result_noduletype, noduletype_labels)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/functional.py", line 3029, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(input, target, weight, _Reduction.get_enum(reduction), ignore_index, label_smoothing)
+RuntimeError: 0D or 1D target tensor expected, multi-target not supported
+
+JOB STATISTICS
+==============
+Job ID: 2771958
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:55
+CPU Efficiency: 9.13% of 00:21:00 core-walltime
+Job Wall-clock time: 00:01:10
+Memory Utilized: 3.98 GB
+Memory Efficiency: 6.21% of 64.00 GB

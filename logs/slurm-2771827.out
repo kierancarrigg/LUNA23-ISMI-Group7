@@ -1,0 +1,50 @@
+[INFO][03:56:38]  training, epoch: 1 / 10, with fold: 0
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]  0%|          | 0/17 [00:08<?, ?it/s]
+images shape torch.Size([32, 1, 64, 64, 64])
+0
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+1
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 365, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 285, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran.py", line 217, in forward
+    outputs = self.model(images)  # do the forward pass
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 173, in forward
+    latent = contract(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 53, in forward
+    return self.pool_conv(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 613, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 608, in _conv_forward
+    return F.conv3d(
+RuntimeError: Given groups=1, weight of size [128, 64, 3, 3, 3], expected input[32, 1, 32, 32, 32] to have 64 channels, but got 1 channels instead
+
+JOB STATISTICS
+==============
+Job ID: 2771827
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:49
+CPU Efficiency: 11.65% of 00:15:36 core-walltime
+Job Wall-clock time: 00:00:52
+Memory Utilized: 551.08 MB
+Memory Efficiency: 0.84% of 64.00 GB

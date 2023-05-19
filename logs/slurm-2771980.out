@@ -1,0 +1,23 @@
+Type van dataset <class '__main__.NoduleDataset'>
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 628, in <module>
+    test(workspace)
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 599, in test
+    train_loader = get_data_loader(
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 394, in get_data_loader
+    dataset = dataset_original.update(dataset_translation)
+AttributeError: 'NoduleDataset' object has no attribute 'update'
+
+JOB STATISTICS
+==============
+Job ID: 2771980
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:07
+CPU Efficiency: 1.00% of 00:11:42 core-walltime
+Job Wall-clock time: 00:00:39
+Memory Utilized: 150.48 MB
+Memory Efficiency: 0.23% of 64.00 GB

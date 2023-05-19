@@ -1,0 +1,57 @@
+[INFO][03:59:34]  training, epoch: 1 / 10, with fold: 0
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]  0%|          | 0/17 [00:10<?, ?it/s]
+images shape torch.Size([32, 1, 64, 64, 64])
+0
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+1
+incoming shape: torch.Size([32, 64, 64, 64, 64])
+2
+incoming shape: torch.Size([32, 128, 32, 32, 32])
+3
+incoming shape: torch.Size([32, 256, 16, 16, 16])
+4
+incoming shape: torch.Size([32, 512, 8, 8, 8])
+Latent shape torch.Size([32, 1024, 4, 4, 4])
+outputs torch.Size([32, 1, 64, 64, 64])
+features torch.Size([32, 64, 64, 64, 64])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 365, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 285, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran.py", line 217, in forward
+    outputs = self.model(images)  # do the forward pass
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 194, in forward
+    noduletype = self.nodule_type(latent)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel.py", line 98, in forward
+    y = self.conv(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (524288x4 and 1024x128)
+
+JOB STATISTICS
+==============
+Job ID: 2771830
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:51
+CPU Efficiency: 12.59% of 00:14:42 core-walltime
+Job Wall-clock time: 00:00:49
+Memory Utilized: 1.66 GB
+Memory Efficiency: 2.59% of 64.00 GB

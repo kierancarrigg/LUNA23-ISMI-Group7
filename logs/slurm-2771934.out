@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 21, in <module>
+    project_dir = sys.argv[1]
+NameError: name 'sys' is not defined
+
+JOB STATISTICS
+==============
+Job ID: 2771934
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:06
+CPU Efficiency: 0.88% of 00:11:24 core-walltime
+Job Wall-clock time: 00:00:38
+Memory Utilized: 1.32 MB
+Memory Efficiency: 0.00% of 64.00 GB
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

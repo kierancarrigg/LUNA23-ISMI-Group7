@@ -1,0 +1,65 @@
+10.0
+[7, 8, 6, 11]
+
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 624, in <module>
+    test(workspace)
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 609, in test
+    for batch_data in train_loader:
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1326, in _next_data
+    return self._process_data(data)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+ValueError: Caught ValueError in DataLoader worker process 1.
+Original Traceback (most recent call last):
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 330, in __getitem__
+    patch, mask, metad = self._extract_patch(pd)
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 289, in _extract_patch
+    label = np.load(label_path)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/numpy/lib/npyio.py", line 438, in load
+    raise ValueError("Cannot load file containing pickled data "
+ValueError: Cannot load file containing pickled data when allow_pickle=False
+
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/lib/python3.9/threading.py", line 954, in _bootstrap_inner
+    self.run()
+  File "/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/lib/python3.9/threading.py", line 892, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/pin_memory.py", line 51, in _pin_memory_loop
+    do_one_step()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/pin_memory.py", line 28, in do_one_step
+    r = in_queue.get(timeout=MP_STATUS_CHECK_INTERVAL)
+  File "/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 307, in rebuild_storage_fd
+    fd = df.detach()
+  File "/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/lib/python3.9/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/lib/python3.9/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/sw/arch/Centos8/EB_production/2021/software/Python/3.9.5-GCCcore-10.3.0/lib/python3.9/multiprocessing/connection.py", line 507, in Client
+
+JOB STATISTICS
+==============
+Job ID: 2771948
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:58
+CPU Efficiency: 13.66% of 00:14:24 core-walltime
+Job Wall-clock time: 00:00:48
+Memory Utilized: 165.69 MB
+Memory Efficiency: 0.25% of 64.00 GB

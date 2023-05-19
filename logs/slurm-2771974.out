@@ -1,0 +1,131 @@
+[INFO][05:00:31]  training, epoch: 1 / 10, with fold: 0
+
+
+
+  0%|          | 0/17 [00:00<?, ?it/s]  6%|▌         | 1/17 [01:14<19:47, 74.23s/it]  6%|▌         | 1/17 [01:14<19:54, 74.65s/it]
+images shape torch.Size([32, 1, 64, 64, 64])
+0
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+1
+incoming shape: torch.Size([32, 64, 64, 64, 64])
+2
+incoming shape: torch.Size([32, 128, 32, 32, 32])
+3
+incoming shape: torch.Size([32, 256, 16, 16, 16])
+4
+incoming shape: torch.Size([32, 512, 8, 8, 8])
+Latent shape torch.Size([32, 1024, 4, 4, 4])
+outputs torch.Size([32, 1, 64, 64, 64])
+latent features torch.Size([32, 1024, 4, 4, 4])
+flattened latent torch.Size([32, 65536])
+nodule-type output shape: tensor([[-0.0181,  0.0660,  0.2040, -0.1440],
+        [-0.1263,  0.0371,  0.4159, -0.1207],
+        [-0.0583, -0.0646,  0.2614, -0.0311],
+        [-0.1080, -0.0941,  0.1762, -0.0816],
+        [-0.0587,  0.0538,  0.4389, -0.1405],
+        [-0.0198,  0.0927,  0.2197, -0.1287],
+        [-0.1847, -0.1246,  0.3647, -0.1307],
+        [-0.1250,  0.0954,  0.2228, -0.1142],
+        [-0.0225, -0.0007,  0.5042, -0.1750],
+        [-0.0773,  0.0696,  0.3721, -0.1234],
+        [-0.0306,  0.0298,  0.3053, -0.1196],
+        [ 0.0792,  0.0877,  0.2602, -0.2291],
+        [-0.1340,  0.0719,  0.2724, -0.0956],
+        [-0.0255,  0.2050,  0.2066, -0.0298],
+        [-0.2354,  0.1796,  0.4992, -0.2303],
+        [-0.0840, -0.0107,  0.2550, -0.1305],
+        [-0.0503,  0.0440,  0.2838, -0.0948],
+        [-0.1282,  0.0783,  0.2012, -0.1377],
+        [-0.0118,  0.0093,  0.1547, -0.0228],
+        [-0.0962, -0.0179,  0.2898, -0.1792],
+        [-0.0489,  0.1245,  0.3325, -0.1841],
+        [ 0.0941,  0.0699,  0.2130, -0.2222],
+        [-0.0507,  0.1677,  0.3500, -0.2083],
+        [-0.0731,  0.2592,  0.3094, -0.2694],
+        [-0.0750, -0.0011,  0.3703, -0.1289],
+        [ 0.0361,  0.0386,  0.5167, -0.2373],
+        [-0.0412,  0.0038,  0.4122, -0.1634],
+        [-0.0984,  0.1411,  0.2956, -0.1186],
+        [-0.0568, -0.0234,  0.3313, -0.0905],
+        [ 0.0105, -0.0141,  0.3809, -0.1898],
+        [-0.0265,  0.0730,  0.1452, -0.1822],
+        [-0.0114,  0.1080,  0.4024, -0.1882]], device='cuda:0',
+       grad_fn=<AddmmBackward0>)
+malignancy output shape: torch.Size([32, 1])
+noduletype labels shape torch.Size([32, 1])
+images shape torch.Size([32, 1, 64, 64, 64])
+0
+incoming shape: torch.Size([32, 1, 64, 64, 64])
+1
+incoming shape: torch.Size([32, 64, 64, 64, 64])
+2
+incoming shape: torch.Size([32, 128, 32, 32, 32])
+3
+incoming shape: torch.Size([32, 256, 16, 16, 16])
+4
+incoming shape: torch.Size([32, 512, 8, 8, 8])
+Latent shape torch.Size([32, 1024, 4, 4, 4])
+outputs torch.Size([32, 1, 64, 64, 64])
+latent features torch.Size([32, 1024, 4, 4, 4])
+flattened latent torch.Size([32, 65536])
+nodule-type output shape: tensor([[ 6.0933, -0.1611, -4.8684,  0.1457],
+        [ 5.2848, -1.2697, -3.3257,  0.2836],
+        [ 3.6182, -0.9043, -3.7499,  1.1285],
+        [ 7.1978, -1.4284, -3.8134, -0.5671],
+        [ 3.9083, -1.0558, -3.8034,  1.1303],
+        [ 7.8757, -1.7511, -3.9439, -0.7437],
+        [ 4.3410, -1.0193, -3.7883,  0.9657],
+        [10.6042, -1.2463, -5.8784, -1.1421],
+        [ 7.4888, -1.3353, -4.0188, -0.6706],
+        [ 7.2420, -0.9309, -4.1121, -0.5699],
+        [ 6.7698, -0.4047, -4.6685, -0.2374],
+        [ 7.6878, -1.9383, -3.6666, -0.4587],
+        [ 7.0570, -1.7180, -3.7757, -0.4005],
+        [ 3.5699, -0.9879, -3.6203,  1.1977],
+        [ 4.9329, -1.1522, -3.4043,  0.3320],
+        [10.1681, -2.0608, -4.1142, -1.5658],
+        [ 5.3913, -1.0150, -3.8808,  0.3251],
+        [ 4.0545, -1.4556, -3.1606,  0.8177],
+        [ 9.4591, -0.4520, -5.4316, -1.0899],
+        [ 8.6156, -1.4545, -4.4950, -0.8621],
+        [ 5.4239, -0.3887, -4.6091,  0.5556],
+        [ 8.0899, -1.4876, -4.5583, -0.5326],
+        [ 3.9060, -1.0231, -3.9686,  1.2143],
+        [ 9.2145, -1.0352, -4.6215, -1.3640],
+        [ 4.3317, -1.4441, -3.2078,  0.7868],
+        [ 6.5282, -0.6058, -4.5916,  0.0590],
+        [ 6.7870, -0.5534, -4.8178, -0.0425],
+        [ 6.2781, -1.9451, -4.1735,  0.4188],
+        [ 9.1011, -1.5116, -4.1436, -1.3520],
+        [ 9.0104, -0.0528, -5.9422, -0.7476],
+        [ 4.9461, -1.9466, -3.2256,  0.6329],
+        [ 9.2817, -1.6786, -4.6643, -1.0218]], device='cuda:0',
+       grad_fn=<AddmmBackward0>)
+malignancy output shape: torch.Size([32, 1])
+noduletype labels shape torch.Size([32, 1])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 365, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 285, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran.py", line 236, in forward
+    overall_loss.backward()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/autograd/__init__.py", line 200, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB (GPU 0; 39.45 GiB total capacity; 36.32 GiB already allocated; 1.85 GiB free; 37.08 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+JOB STATISTICS
+==============
+Job ID: 2771974
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:02:53
+CPU Efficiency: 8.43% of 00:34:12 core-walltime
+Job Wall-clock time: 00:01:54
+Memory Utilized: 4.13 GB
+Memory Efficiency: 6.46% of 64.00 GB
