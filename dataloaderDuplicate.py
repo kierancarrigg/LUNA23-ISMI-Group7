@@ -11,12 +11,15 @@ import numpy.linalg as npl
 import scipy.ndimage as ndi
 import SimpleITK as sitk
 import logging
+import sys
 
 logging.basicConfig(
     level=logging.INFO,
     format="[%(levelname)s][%(asctime)s] %(message)s",
     datefmt="%I:%M:%S",
 )
+
+project_dir = sys.argv[1]
 
 
 NODULETYPE_MAPPING = {
@@ -348,6 +351,10 @@ class NoduleDataset(data.Dataset):
         fmt_str += "    Number of datapoints: {}\n".format(self.__len__())
         return fmt_str
 
+    # def __merge__(self):
+    #Hier misschien zelf een functie maken?
+
+
 
 def get_data_loader(
     data_dir,
@@ -361,16 +368,75 @@ def get_data_loader(
     rotations=None,
     translations=None,
     pin_memory=True,
+    train = False, 
 ):
-    dataset = NoduleDataset(
-        data_dir=data_dir,
-        translations=translations,
-        dataset=dataset,
-        rotations=rotations,
-        patch_size=patch_size,
-        size_mm=size_mm,
-        size_px=size_px,
-    )
+
+    if train: 
+        dataset_original = NoduleDataset(
+            data_dir=data_dir,
+            translations=False,
+            dataset=dataset,
+            rotations=None,
+            patch_size=patch_size,
+            size_mm=size_mm,
+            size_px=size_px,
+        )
+
+        print('Type van dataset', type(dataset_original))
+        #print('First item of original', dataset_original[0])
+
+        dataset_translation = NoduleDataset(
+            data_dir=data_dir,
+            translations=True,
+            dataset=dataset,
+            rotations=None,
+            patch_size=patch_size,
+            size_mm=size_mm,
+            size_px=size_px,
+        )
+
+        dataset = dataset_original.update(dataset_translation)
+        #print('First item of translation', dataset_translation[0])
+
+        dataset_rotation = NoduleDataset(
+            data_dir=data_dir,
+            translations=False,
+            dataset=dataset,
+            rotations=rotations,
+            patch_size=patch_size,
+            size_mm=size_mm,
+            size_px=size_px,
+        )
+
+        dataset = dataset.update(dataset_rotation)
+        #print('First item of rotation', dataset_rotation[0])
+
+        dataset_trans_rot = NoduleDataset(
+            data_dir=data_dir,
+            translations=True,
+            dataset=dataset,
+            rotations=rotations,
+            patch_size=patch_size,
+            size_mm=size_mm,
+            size_px=size_px,
+        )
+
+        dataset = dataset.update(dataset_trans_rot)
+
+        #print('First item of trans rot', dataset_trans_rot[0])
+
+
+    if train == False:
+        dataset = NoduleDataset(
+            data_dir=data_dir,
+            translations=True,
+            dataset=dataset,
+            rotations=rotations,
+            patch_size=patch_size,
+            size_mm=size_mm,
+            size_px=size_px,
+        )
+ 
 
     shuffle = False
     if sampler == None:
@@ -545,6 +611,7 @@ def test(workspace: Path = Path("/code/bodyct-luna23-ismi-trainer/")):
         size_mm=50,
         size_px=64,
         patch_size=(64, 128, 128),
+        train = True, 
     )
 
     for batch_data in train_loader:
@@ -561,4 +628,5 @@ def test(workspace: Path = Path("/code/bodyct-luna23-ismi-trainer/")):
 
 if __name__ == "__main__":
 
-    test()
+    workspace = Path(project_dir)
+    test(workspace)
