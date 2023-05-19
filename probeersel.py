@@ -66,7 +66,7 @@ class MultiTaskNetwork(nn.Module):
                 nn.ReLU(inplace=True),
             )
 
-            layers = conv3x3(n_filters * 2, n_filters)
+            layers = conv3x3(n_input_channels, n_filters)
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
             layers += conv3x3(n_filters, n_filters)
@@ -78,7 +78,7 @@ class MultiTaskNetwork(nn.Module):
             return self.conv(y)
 
     class NoduleTypeBlock(nn.Module):
-        def __init__(self, n_input_channels, n_filters, n_classes=4, dropout=None):
+        def __init__(self, n_input_channels, n_filters, dropout=None):
             super().__init__()
             """
             Nodule type decoder that is a fully connected network with the output being the probability per possible class
@@ -87,15 +87,17 @@ class MultiTaskNetwork(nn.Module):
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers.append(nn.Linear(n_filters, n_filters))
+            layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers.append(nn.Linear(n_filters, n_classes))
+            layers.append(nn.Linear(n_filters//2, 4))
             self.conv = nn.Sequential(*layers)
+            # self.conv = nn.Linear(n_input_channels, out_features=4)
 
         def forward(self, incoming):
             y = self.conv(incoming)
-            return F.softmax(y)
+            # return F.softmax(y)
+            return y
 
     class MalignancyBlock(nn.Module):
         def __init__(self, n_input_channels, n_filters, dropout=None):
@@ -107,40 +109,93 @@ class MultiTaskNetwork(nn.Module):
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers.append(nn.Linear(n_filters, n_filters))
+            layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
                 layers.append(nn.Dropout(p=dropout))
-            layers.append(nn.Linear(n_filters, 1))
+            layers.append(nn.Linear(n_filters//2, 1))
             self.conv = nn.Sequential(*layers)
 
         def forward(self, incoming):
             y = self.conv(incoming)
             return F.sigmoid(y)
 
-    def __init__(self, n_input_channels, n_filters, dropout) -> None:
+    def __init__(self, n_input_channels, n_filters, dropout=None, sigmoid=True) -> None:
         super(MultiTaskNetwork, self).__init__()
         """
         Initiate Encoder and Decoder with appropiate input and output dimensions.
 
-        feature_dim: number of input / ouput units. For example the total number of pixels.
-        latent_dim: number of latent variables.
-        hidden_size: number of hidden units
-
+        pas deze doc aan
         """
-        self.contraction = self.ContractionBlock(n_input_channels, n_filters, dropout)
-        self.segmentation = self.SegmentationBlock(n_input_channels, n_filters, dropout)
-        self.nodule_type = self.NoduleTypeBlock(n_input_channels, n_filters, dropout)
-        self.malignant = self.MalignancyBlock(n_input_channels, n_filters, dropout)
+        self.contraction = nn.ModuleList()
+        filters = n_filters
+        for i in range(1, 6):
+            if i == 1:
+                n_in = n_input_channels
+            self.contraction.append(
+                self.ContractionBlock(
+                    n_in, filters, dropout=dropout if i > 1 else None, pooling=i > 1
+                )
+            )
+            if i<5:
+                n_in = filters
+                filters = filters * 2
 
-    def forward(self, incoming):
-        # Moet nog omgebouwd worden want nu missen we de meerdere hoeveelheden contraction en 
-        # segmentation blocks, en gebeurt er niks met skip connections.
-        # Originele U-net code gaf ook de intermediate features bij output dus wellicht die alsnog gebruiken?
-        latent = self.contraction(incoming)
-        seg = self.segmentation(latent)
+        self.expansion = nn.ModuleList()
+        f = filters
+        for i in range(1, 5):
+            f1 = f // 2
+            self.expansion.append(self.SegmentationBlock(f, f1, dropout=dropout))
+            f = f1
+
+        output_layer = nn.Conv3d(
+            in_channels=f1,
+            out_channels=1,
+            kernel_size=1,
+        )
+        if sigmoid:
+            self.segmentation = nn.Sequential(output_layer, nn.Sigmoid())
+        else:
+            self.segmentation = output_layer
+
+        self.nodule_type = self.NoduleTypeBlock(65536, 128, dropout) #inspiratie voor n_filters=128 uit COVID-19 multitask model
+        self.malignant = self.MalignancyBlock(65536, 128, dropout)
+
+    def forward(self, incoming): 
+        """
+        Moet nog omgebouwd worden want nu missen we de meerdere hoeveelheden contraction en 
+        segmentation blocks, en gebeurt er niks met skip connections.
+        Originele U-net code gaf ook de intermediate features bij output dus wellicht die alsnog gebruiken?
+        """
+        # Pass incoming through contraction path
+        latent = incoming
+        
+        cf = []
+        i = 0
+        for contract in self.contraction:
+            latent = contract(latent)
+            cf.append(latent)
+            i +=1
+
+        # Three output paths: segmentation, nodule type classification, malignancy classification
+
+        # Pass features through expansion path
+        seg = latent
+        for expand, features in zip(self.expansion, reversed(cf[:-1])):
+            seg = expand(seg, features)
+
+        # Collect final output
+        segmentation = self.segmentation(seg)
+
+        # Flatten latent features for fully connected layers
+        latent = latent.view(latent.size(0), -1)
+
+        # Pass features through nodule type fully connected layers
         noduletype = self.nodule_type(latent)
+
+        # Pass features through malignancy fully connected layers
         malignancy = self.malignant(latent)
-        return {'segmentation': seg, 'nodule-type': noduletype, 'malignancy': malignancy}
+
+        return {'segmentation': segmentation, 'nodule-type': noduletype, 'malignancy': malignancy}
 
     def loss(self, original_masks, noduletype_labels, malignancy_labels, result):
         """
@@ -151,113 +206,7 @@ class MultiTaskNetwork(nn.Module):
         result_noduletype = result['nodule-type']
         result_malignancy = result['malignancy']
         seg_loss = dice_loss(result_segmentation, original_masks)
-        type_loss = F.cross_entropy(result_noduletype, noduletype_labels)
+        type_loss = F.cross_entropy(result_noduletype, noduletype_labels.squeeze().long())
         malig_loss = F.binary_cross_entropy(result_malignancy, malignancy_labels)
         overall_loss = 2 * malig_loss + type_loss + seg_loss
         return seg_loss, type_loss, malig_loss, overall_loss
-
-
-# class UNet(nn.Module):
-#     def __init__(
-#         self,
-#         n_input_channels,
-#         n_filters,
-#         n_output_channels=1,
-#         dropout=None,
-#         sigmoid=True,
-#     ):
-#         super().__init__()
-
-#         # Build contraction path
-#         self.contraction = nn.ModuleList()
-#         for i in range(1, 5):
-#             n_in = n_filters if i > 1 else n_input_channels
-#             self.contraction.append(
-#                 ContractionBlock(
-#                     n_in, n_filters, dropout=dropout if i > 1 else None, pooling=i > 1
-#                 )
-#             )
-
-#         # Build expansion path
-#         self.expansion = nn.ModuleList()
-#         for i in range(1, 4):
-#             self.expansion.append(ExpansionBlock(n_filters, n_filters, dropout=dropout))
-
-#         output_layer = nn.Conv3d(
-#             in_channels=n_filters,
-#             out_channels=n_output_channels,
-#             kernel_size=1,
-#         )
-#         if sigmoid:
-#             self.segmentation = nn.Sequential(output_layer, nn.Sigmoid())
-#         else:
-#             self.segmentation = output_layer
-
-#     def forward(self, image):
-#         y = image
-
-#         # Pass image through contraction path
-#         cf = []
-#         for contract in self.contraction:
-#             y = contract(y)
-#             cf.append(y)
-
-#         print('Intermediate y', y.shape)
-
-#         # Pass features through expansion path
-#         for expand, features in zip(self.expansion, reversed(cf[:-1])):
-#             y = expand(y, features)
-
-#         # Collect final output
-#         segmentation = self.segmentation(y)
-#         features = cf[-1]
-
-#         outputs = {"segmentation": segmentation, "features": cf[-1]}
-
-#         print('outputs', segmentation.shape)
-#         print('features', features.shape)
-
-#         return outputs
-
-
-# class Flatten(nn.Module):
-#     def forward(self, y):
-#         return y.view(y.size(0), -1)
-
-
-# class CNN3D(nn.Module):
-#     def __init__(
-#         self,
-#         n_input_channels,
-#         n_output_channels=1,
-#         task="malignancy",
-#     ) -> None:
-#         super().__init__()
-
-#         assert task in ["noduletype", "malignancy"]
-
-#         self.task = task
-
-#         if task == "malignancy":
-#             activation = nn.Sigmoid()
-#         else:
-#             activation = nn.Softmax(dim=1)
-
-#         self.classification = nn.Sequential(
-#             *conv3x3(n_input_channels, 32, padding=0),
-#             nn.MaxPool3d(kernel_size=2),
-#             *conv3x3(32, 64, padding=0),
-#             nn.MaxPool3d(kernel_size=2),
-#             *conv3x3(64, 64, padding=0),
-#             nn.MaxPool3d(kernel_size=2),
-#             *conv3x3(64, 128, padding=0),
-#             nn.MaxPool3d(kernel_size=2),
-#             Flatten(),
-#             nn.Linear(1024, out_features=n_output_channels),
-#             activation,
-#         )
-
-#     def forward(self, x):
-#         outputs = self.classification(x)
-#         outputs = {self.task: outputs}
-#         return outputs

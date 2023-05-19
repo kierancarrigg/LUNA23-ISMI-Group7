@@ -1,6 +1,6 @@
 import sys
 import pandas
-import dataloaderDuplicate
+import dataloader
 import torch
 import torch.nn.functional as F
 from pathlib import Path
@@ -12,7 +12,7 @@ from sklearn.model_selection import StratifiedKFold
 import sklearn.metrics as skl_metrics
 from typing import List
 
-logging = dataloaderDuplicate.logging
+logging = dataloader.logging
 project_dir = sys.argv[1]
 
 def dice_loss(input, target):
@@ -118,7 +118,7 @@ class NoduleAnalyzer:
         self.max_epochs = max_epochs
         self.learning_rate = 1e-4
 
-        # self.best_metric_fn = best_metric_fn
+        self.best_metric_fn = best_metric_fn
 
         date = datetime.today().strftime("%Y%m%d")
         self.exp_id = f"{date}_{experiment_id}"
@@ -160,12 +160,12 @@ class NoduleAnalyzer:
 
         
         x = self.train_df.malignancy.values
-        x = dataloaderDuplicate.make_weights_for_balanced_classes(x)
+        x = dataloader.make_weights_for_balanced_classes(x)
         weights_malignancy = x
 
         y = self.train_df.noduletype.values
-        y = [dataloaderDuplicate.NODULETYPE_MAPPING[t] for t in y]
-        y = dataloaderDuplicate.make_weights_for_balanced_classes(y)
+        y = [dataloader.NODULETYPE_MAPPING[t] for t in y]
+        y = dataloader.make_weights_for_balanced_classes(y)
         weights_noduletype = y
 
         weights = weights_malignancy * weights_noduletype  # 🥚 Easter egg
@@ -176,7 +176,7 @@ class NoduleAnalyzer:
             len(self.train_df),
         )
 
-        self.train_loader = dataloaderDuplicate.get_data_loader(
+        self.train_loader = dataloader.get_data_loader(
             self.workspace / "data" / "train_set",
             self.train_df,
             sampler=sampler,
@@ -189,7 +189,7 @@ class NoduleAnalyzer:
             patch_size=self.patch_size,
         )
 
-        self.valid_loader = dataloaderDuplicate.get_data_loader(
+        self.valid_loader = dataloader.get_data_loader(
             self.workspace / "data" / "train_set",
             self.valid_df,
             workers=self.num_workers // 2,
@@ -216,7 +216,7 @@ class NoduleAnalyzer:
 
         outputs = self.model(images)  # do the forward pass
 
-        seg_loss, type_loss, malig_loss, overall_loss = self.model.losses([masks, noduletype_targets, malignancy_targets], outputs) # zoiets
+        seg_loss, type_loss, malig_loss, overall_loss = self.model.loss(masks, noduletype_targets, malignancy_targets, outputs)
 
         losses["segmentation"] = seg_loss.item()
         outputs["segmentation"] = outputs["segmentation"]
@@ -354,12 +354,12 @@ if __name__ == "__main__":
         # return metrics["malignancy"]["auc"]  # 🥚 Easter egg
 
 
-    model = probeersel.MultiTaskNetwork(n_input_channels=10, n_filters=10, dropout=True)
+    model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
     
     nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                      best_metric_fn=best_metric_fn, 
                                      experiment_id="0_multitask_model", 
-                                     batch_size=32, 
+                                     batch_size=16, 
                                      fold=0, 
-                                     max_epochs=1000)
+                                     max_epochs=10)
     nodule_analyzer.train(model)
