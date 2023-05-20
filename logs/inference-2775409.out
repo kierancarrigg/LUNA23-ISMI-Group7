@@ -1,0 +1,22 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230519_1_multitask_model/fold0/test_set_predictions/': File exists
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 0/256 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference.py", line 201, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference.py", line 116, in perform_inference_on_test_set
+    outputs = multitask_model(images)
+NameError: name 'images' is not defined
+
+JOB STATISTICS
+==============
+Job ID: 2775409
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:09
+CPU Efficiency: 1.06% of 00:14:06 core-walltime
+Job Wall-clock time: 00:00:47
+Memory Utilized: 179.12 MB
+Memory Efficiency: 0.27% of 64.00 GB
