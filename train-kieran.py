@@ -207,7 +207,6 @@ class NoduleAnalyzer:
             batch_data["noduletype_target"].to(self.device),
             batch_data["malignancy_target"].to(self.device),
         )
-        print("images shape", images.shape)
 
         targets, losses = {}, {}
 
@@ -358,8 +357,8 @@ if __name__ == "__main__":
     
     nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                      best_metric_fn=best_metric_fn, 
-                                     experiment_id="0_multitask_model", 
+                                     experiment_id="1_multitask_model", 
                                      batch_size=16, 
                                      fold=0, 
-                                     max_epochs=10)
+                                     max_epochs=500)
     nodule_analyzer.train(model)
