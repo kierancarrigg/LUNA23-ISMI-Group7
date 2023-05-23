@@ -1,0 +1,28 @@
+dataset len train=true 2156
+<torch.utils.data.dataset.ConcatDataset object at 0x14b02a9257c0>
+dataset len train=false 2 2156
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran.py", line 367, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran.py", line 244, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran.py", line 179, in _initialize_data_loaders
+    self.train_loader = dataloader.get_data_loader(
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate.py", line 441, in get_data_loader
+    print(dataset.shape)
+AttributeError: 'ConcatDataset' object has no attribute 'shape'
+
+JOB STATISTICS
+==============
+Job ID: 2786641
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:15:18 core-walltime
+Job Wall-clock time: 00:00:51
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

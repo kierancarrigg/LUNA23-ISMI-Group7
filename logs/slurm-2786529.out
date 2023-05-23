@@ -1,0 +1,86 @@
+dataset len train=true 2748
+<torch.utils.data.dataset.ConcatDataset object at 0x148e0f165550>
+dataset len train=false 2 2748
+batch size:  32
+len dataloader in dataloaderDuplicate 22
+10.0
+[9, 9, 9, 5]
+
+10.0
+[6, 10, 7, 9]
+
+17.0
+[9, 10, 9, 4]
+
+14.0
+[5, 11, 11, 5]
+
+11.0
+[9, 9, 8, 6]
+
+17.0
+[10, 12, 4, 6]
+
+18.0
+[11, 8, 8, 5]
+
+14.0
+[7, 9, 9, 7]
+
+13.0
+[12, 7, 6, 7]
+
+15.0
+[2, 9, 13, 8]
+
+15.0
+[9, 9, 8, 6]
+
+15.0
+[7, 8, 12, 5]
+
+16.0
+[9, 7, 12, 4]
+
+9.0
+[8, 10, 9, 5]
+
+14.0
+[10, 9, 4, 9]
+
+16.0
+[8, 12, 7, 5]
+
+14.0
+[5, 10, 8, 9]
+
+20.0
+[3, 14, 11, 4]
+
+19.0
+[9, 9, 6, 8]
+
+13.0
+[8, 11, 9, 4]
+
+13.0
+[9, 10, 8, 5]
+
+8.0
+[1, 6, 5, 3]
+
+
+JOB STATISTICS
+==============
+Job ID: 2786529
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:15:18 core-walltime
+Job Wall-clock time: 00:00:51
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

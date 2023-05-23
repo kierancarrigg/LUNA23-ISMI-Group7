@@ -1,0 +1,18 @@
+  File "/scratch-shared/ssommers/train-kieran.py", line 358
+    for i in range(5)
+                     ^
+SyntaxError: invalid syntax
+
+JOB STATISTICS
+==============
+Job ID: 2786037
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.12% of 00:13:48 core-walltime
+Job Wall-clock time: 00:00:46
+Memory Utilized: 2.75 MB
+Memory Efficiency: 0.00% of 64.00 GB

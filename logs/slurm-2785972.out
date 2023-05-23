@@ -1,0 +1,83 @@
+Length dataset 2748
+Hij komt hier al
+16.0
+[13, 7, 6, 6]
+
+15.0
+[10, 8, 9, 5]
+
+13.0
+[8, 9, 6, 9]
+
+10.0
+[4, 12, 8, 8]
+
+12.0
+[7, 5, 11, 9]
+
+16.0
+[14, 5, 10, 3]
+
+12.0
+[9, 9, 8, 6]
+
+15.0
+[8, 3, 14, 7]
+
+12.0
+[7, 9, 11, 5]
+
+12.0
+[5, 9, 9, 9]
+
+10.0
+[10, 5, 9, 8]
+
+14.0
+[5, 12, 6, 9]
+
+10.0
+[9, 7, 9, 7]
+
+14.0
+[7, 7, 11, 7]
+
+15.0
+[6, 12, 5, 9]
+
+16.0
+[7, 9, 9, 7]
+
+10.0
+[6, 7, 7, 12]
+
+18.0
+[7, 12, 8, 5]
+
+17.0
+[6, 9, 10, 7]
+
+15.0
+[6, 16, 6, 4]
+
+15.0
+[6, 11, 7, 8]
+
+7.0
+[2, 7, 4, 2]
+
+
+JOB STATISTICS
+==============
+Job ID: 2785972
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:15:00 core-walltime
+Job Wall-clock time: 00:00:50
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
