@@ -7,6 +7,7 @@ import numpy as np
 import torch
 import torch.utils.data as data
 from torch.utils.data import DataLoader
+from tqdm import tqdm
 import numpy.linalg as npl
 import scipy.ndimage as ndi
 import SimpleITK as sitk
@@ -361,7 +362,7 @@ def get_data_loader(
     dataset,
     sampler=None,
     workers=0,
-    batch_size=64,
+    batch_size=16,
     patch_size=(64, 128, 128),
     size_px=64,
     size_mm=70,
@@ -371,6 +372,10 @@ def get_data_loader(
     train = False, 
 ):
 
+    shuffle = False
+    if sampler == None:
+        shuffle = (True,)
+    
     if train: 
         dataset_original = NoduleDataset(
             data_dir=data_dir,
@@ -382,8 +387,8 @@ def get_data_loader(
             size_px=size_px,
         )
 
-        print('Type van dataset', type(dataset_original))
-        #print('First item of original', dataset_original[0])
+        # print('Rotation', rotations)
+        # print('First dingetje', dataset_original[0])
 
         dataset_translation = NoduleDataset(
             data_dir=data_dir,
@@ -395,8 +400,6 @@ def get_data_loader(
             size_px=size_px,
         )
 
-        dataset = dataset_original.update(dataset_translation)
-        #print('First item of translation', dataset_translation[0])
 
         dataset_rotation = NoduleDataset(
             data_dir=data_dir,
@@ -408,8 +411,7 @@ def get_data_loader(
             size_px=size_px,
         )
 
-        dataset = dataset.update(dataset_rotation)
-        #print('First item of rotation', dataset_rotation[0])
+        # print('First dingetje rotation', dataset_rotation[0])
 
         dataset_trans_rot = NoduleDataset(
             data_dir=data_dir,
@@ -421,37 +423,49 @@ def get_data_loader(
             size_px=size_px,
         )
 
-        dataset = dataset.update(dataset_trans_rot)
+        concat_dataset = torch.utils.data.ConcatDataset((dataset_original, dataset_translation, dataset_rotation, dataset_trans_rot))
+        # print('dataset jojojoo', dataset)
+        print('dataset len train=true', len(concat_dataset))
 
-        #print('First item of trans rot', dataset_trans_rot[0])
+        data_loader = DataLoader(
+            concat_dataset,
+            batch_size=batch_size,
+            shuffle=shuffle,
+            num_workers=workers,
+            pin_memory=pin_memory,
+            sampler=sampler,
+            worker_init_fn=worker_init_fn,
+        )
 
 
     if train == False:
         dataset = NoduleDataset(
             data_dir=data_dir,
-            translations=True,
+            translations=False,
             dataset=dataset,
-            rotations=rotations,
+            rotations=None,
             patch_size=patch_size,
             size_mm=size_mm,
             size_px=size_px,
         )
- 
 
-    shuffle = False
-    if sampler == None:
-        shuffle = (True,)
+        data_loader = DataLoader(
+            dataset,
+            batch_size=batch_size,
+            shuffle=shuffle,
+            num_workers=workers,
+            pin_memory=pin_memory,
+            sampler=sampler,
+            worker_init_fn=worker_init_fn,
+        )
 
-    data_loader = DataLoader(
-        dataset,
-        batch_size=batch_size,
-        shuffle=shuffle,
-        num_workers=workers,
-        pin_memory=pin_memory,
-        sampler=sampler,
-        worker_init_fn=worker_init_fn,
-    )
+        print('dataset len train=false', len(dataset))
+    print('dataset len train=false 2', len(dataset))
 
+    print("batch size: ", batch_size)
+    
+
+    print("len dataloader in dataloaderDuplicate", len(data_loader))
     return data_loader
 
 
@@ -605,7 +619,7 @@ def test(workspace: Path = Path("/code/bodyct-luna23-ismi-trainer/")):
         df,
         sampler=sampler,
         workers=16,
-        batch_size=32,
+        batch_size=16,
         rotations=[(-20, 20)] * 3,
         translations=True,
         size_mm=50,
@@ -614,15 +628,16 @@ def test(workspace: Path = Path("/code/bodyct-luna23-ismi-trainer/")):
         train = True, 
     )
 
-    for batch_data in train_loader:
+    for batch_data in tqdm(train_loader):
 
         malignancy_targets = batch_data["malignancy_target"].numpy().squeeze()
         noduletype_targets = batch_data["noduletype_target"].numpy().squeeze()
 
-        _, c = np.unique(noduletype_targets, return_counts=True)
+        iets, c = np.unique(noduletype_targets, return_counts=True)
 
         print(malignancy_targets.sum())
         print(list(c))
+        print(list(iets))
         print()
 
 
