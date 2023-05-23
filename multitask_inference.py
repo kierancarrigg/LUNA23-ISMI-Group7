@@ -181,7 +181,7 @@ def perform_inference_on_test_set(workspace: Path):
         prediction = {
             "noduleid": noduleid,
             "malignancy": outputs["malignancy"],
-            "nodule-type": outputs["nodule-type"].argmax(),
+            "noduletype": outputs["nodule-type"].argmax(),
             "ggo_probability": outputs["nodule-type"][0],
             "partsolid_probability": outputs["nodule-type"][1],
             "solid_probability": outputs["nodule-type"][2],

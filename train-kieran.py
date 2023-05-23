@@ -1,6 +1,6 @@
 import sys
 import pandas
-import dataloader
+import dataloaderDuplicate as dataloader
 import torch
 import torch.nn.functional as F
 from pathlib import Path
@@ -116,7 +116,7 @@ class NoduleAnalyzer:
         self.max_rotation_degree = 20
 
         self.max_epochs = max_epochs
-        self.learning_rate = 1e-4
+        self.learning_rate = 1e-3
 
         self.best_metric_fn = best_metric_fn
 
@@ -173,7 +173,7 @@ class NoduleAnalyzer:
         weights = torch.DoubleTensor(weights)
         sampler = torch.utils.data.sampler.WeightedRandomSampler(
             weights,
-            len(self.train_df),
+            num_samples = 4 * len(self.train_df),
         )
 
         self.train_loader = dataloader.get_data_loader(
@@ -187,7 +187,9 @@ class NoduleAnalyzer:
             size_mm=self.size_mm,
             size_px=self.size_px,
             patch_size=self.patch_size,
+            train = True
         )
+        print("Train loader length", len(self.train_loader))
 
         self.valid_loader = dataloader.get_data_loader(
             self.workspace / "data" / "train_set",
@@ -196,7 +198,7 @@ class NoduleAnalyzer:
             batch_size=self.batch_size,
             size_mm=self.size_mm,
             size_px=self.size_px,
-            patch_size=self.patch_size,
+            patch_size=self.patch_size
         )
 
     def forward(self, batch_data, update_weights=False):
@@ -344,6 +346,7 @@ class NoduleAnalyzer:
                 print(metrics.to_markdown(tablefmt="grid"))
 
             np.save(save_dir / "metrics.npy", epoch_metrics)
+            torch.save(self.model.state_dict(), save_dir / "last_model.pth")
 
 if __name__ == "__main__":
     workspace = Path(project_dir)
@@ -355,10 +358,11 @@ if __name__ == "__main__":
 
     model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
     
-    nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
-                                     best_metric_fn=best_metric_fn, 
-                                     experiment_id="1_multitask_model", 
-                                     batch_size=16, 
-                                     fold=0, 
-                                     max_epochs=500)
-    nodule_analyzer.train(model)
+    for i in range(2):
+        nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
+                                        best_metric_fn=best_metric_fn, 
+                                        experiment_id="2_multitask_model_5fold", 
+                                        batch_size=16, 
+                                        fold=i, 
+                                        max_epochs=400)
+        nodule_analyzer.train(model)
