@@ -1,0 +1,19 @@
+[INFO][07:14:11]  training, epoch: 1 / 400, with fold: 2
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]slurmstepd: error: *** JOB 2795041 ON gcn23 CANCELLED AT 2023-05-24T19:14:22 ***
+
+JOB STATISTICS
+==============
+Job ID: 2795041
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.07% of 00:23:06 core-walltime
+Job Wall-clock time: 00:01:17
+Memory Utilized: 1.46 GB
+Memory Efficiency: 2.29% of 64.00 GB
