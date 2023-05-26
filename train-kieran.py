@@ -11,6 +11,7 @@ from datetime import datetime
 from sklearn.model_selection import StratifiedKFold
 import sklearn.metrics as skl_metrics
 from typing import List
+from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
 logging = dataloader.logging
 project_dir = sys.argv[1]
@@ -120,6 +121,7 @@ class NoduleAnalyzer:
 
         self.max_epochs = max_epochs
         self.learning_rate = 1e-3
+        # self.learning_rate = 0.05
 
         self.best_metric_fn = best_metric_fn
 
@@ -158,6 +160,13 @@ class NoduleAnalyzer:
             self.model.parameters(),
             lr=self.learning_rate,
         )
+
+        # define the scheduler
+        # self.scheduler = torch.optim.lr_scheduler.StepLR(
+        #     optimizer=self.optimizer,
+        #     step_size=50,
+        #     gamma=0.5,
+        # )
 
     def _initialize_data_loaders(self):
 
@@ -238,6 +247,7 @@ class NoduleAnalyzer:
         if update_weights:
             overall_loss.backward()
             self.optimizer.step()
+            # self.scheduler.step()
 
         return outputs, targets, losses
 
@@ -256,6 +266,7 @@ class NoduleAnalyzer:
 
         best_metric = 0
         best_epoch = 0
+        print("Start of training model: ",self.exp_id)
 
         for epoch in range(self.max_epochs):
 
@@ -297,6 +308,7 @@ class NoduleAnalyzer:
                                 batch_data,
                                 update_weights=False,
                             )
+                            
 
                     for task in self.tasks:
                         metrics[task]["loss"].append(losses[task])
@@ -329,7 +341,7 @@ class NoduleAnalyzer:
                 if mode == "validation":
 
                     if self.best_metric_fn(metrics) > best_metric:
-                    # Wanneer model opslaan? Bij welke metric als beste?
+                    
                         print("\n===== Saving best model! =====\n")
                         best_metric = self.best_metric_fn(metrics)
                         best_epoch = epoch
@@ -338,6 +350,8 @@ class NoduleAnalyzer:
                             save_dir / "best_model.pth",
                         )
                         np.save(save_dir / "best_metrics.npy", metrics)
+                        np.save(save_dir / "predictions.npy", predictions)
+                        np.save(save_dir / "labels.npy", labels)
 
                     else:
 
@@ -360,11 +374,11 @@ if __name__ == "__main__":
 
     
     
-    for i in range(4,5):
+    for i in range(1):
         model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="2_multitask_model_5fold", 
+                                        experiment_id="8_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)

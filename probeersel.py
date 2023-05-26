@@ -86,13 +86,13 @@ class MultiTaskNetwork(nn.Module):
             """
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=0.5))
             layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=0.5))
             layers.append(nn.Linear(n_filters//2, 4))
+            # layers.append(nn.Linear(n_filters, 4))
             self.conv = nn.Sequential(*layers)
-            # self.conv = nn.Linear(n_input_channels, out_features=4)
 
         def forward(self, incoming):
             y = self.conv(incoming)
@@ -108,11 +108,12 @@ class MultiTaskNetwork(nn.Module):
             """
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=0.5))
             layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=0.5))
             layers.append(nn.Linear(n_filters//2, 1))
+            # layers.append(nn.Linear(n_filters, 1))
             self.conv = nn.Sequential(*layers)
 
         def forward(self, incoming):

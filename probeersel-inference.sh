@@ -19,7 +19,7 @@ cp bodyct-luna23-ismi-trainer/dataloader.py /scratch-shared/ssommers/
 cp probeersel.py /scratch-shared/ssommers/
 cp multitask_inference.py /scratch-shared/ssommers/
 cp -r results/ /scratch-shared/ssommers/
-mkdir /scratch-shared/ssommers/results/20230519_1_multitask_model/fold0/test_set_predictions/
+mkdir /scratch-shared/ssommers/results/20230524_2_multitask_model_5fold/fold0/test_set_predictions/
 
 # Set project directory to scratch space
 project_dir=/scratch-shared/ssommers/

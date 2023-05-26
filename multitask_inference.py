@@ -2,7 +2,7 @@
 import sys
 import torch
 import probeersel
-import dataloader
+import dataloaderDuplicate as dataloader
 import numpy as np
 import SimpleITK as sitk
 from typing import Tuple
