@@ -1,0 +1,15 @@
+slurmstepd: error: *** JOB 2803888 ON gcn25 CANCELLED AT 2023-05-26T14:13:48 ***
+
+JOB STATISTICS
+==============
+Job ID: 2803888
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.14% of 00:12:18 core-walltime
+Job Wall-clock time: 00:00:41
+Memory Utilized: 240.88 MB
+Memory Efficiency: 0.37% of 64.00 GB
