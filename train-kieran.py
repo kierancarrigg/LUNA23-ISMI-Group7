@@ -91,6 +91,9 @@ def make_development_splits(
 
             train_pd.to_csv(save_path / f"train{idx}.csv", index=False)
             valid_pd.to_csv(save_path / f"valid{idx}.csv", index=False)
+    
+    if not folds_missing:
+        print("folds found! :)")
 
 class NoduleAnalyzer:
     """Class to train a multi-task nodule analyzer"""
@@ -189,7 +192,6 @@ class NoduleAnalyzer:
             patch_size=self.patch_size,
             train = True
         )
-        print("Train loader length", len(self.train_loader))
 
         self.valid_loader = dataloader.get_data_loader(
             self.workspace / "data" / "train_set",
@@ -346,7 +348,7 @@ class NoduleAnalyzer:
                 print(metrics.to_markdown(tablefmt="grid"))
 
             np.save(save_dir / "metrics.npy", epoch_metrics)
-            torch.save(self.model.state_dict(), save_dir / "last_model.pth")
+        # torch.save(self.model.state_dict(), save_dir / "last_model.pth")
 
 if __name__ == "__main__":
     workspace = Path(project_dir)
@@ -356,9 +358,10 @@ if __name__ == "__main__":
         # return metrics["malignancy"]["auc"]  # 🥚 Easter egg
 
 
-    model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
     
-    for i in range(2):
+    
+    for i in range(4,5):
+        model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
                                         experiment_id="2_multitask_model_5fold", 

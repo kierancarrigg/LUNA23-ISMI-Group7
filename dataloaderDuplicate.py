@@ -387,9 +387,6 @@ def get_data_loader(
             size_px=size_px,
         )
 
-        # print('Rotation', rotations)
-        # print('First dingetje', dataset_original[0])
-
         dataset_translation = NoduleDataset(
             data_dir=data_dir,
             translations=True,
@@ -411,8 +408,6 @@ def get_data_loader(
             size_px=size_px,
         )
 
-        # print('First dingetje rotation', dataset_rotation[0])
-
         dataset_trans_rot = NoduleDataset(
             data_dir=data_dir,
             translations=True,
@@ -424,8 +419,6 @@ def get_data_loader(
         )
 
         concat_dataset = torch.utils.data.ConcatDataset((dataset_original, dataset_translation, dataset_rotation, dataset_trans_rot))
-        # print('dataset jojojoo', dataset)
-        print('dataset len train=true', len(concat_dataset))
 
         data_loader = DataLoader(
             concat_dataset,
@@ -459,13 +452,6 @@ def get_data_loader(
             worker_init_fn=worker_init_fn,
         )
 
-        print('dataset len train=false', len(dataset))
-    print('dataset len train=false 2', len(dataset))
-
-    print("batch size: ", batch_size)
-    
-
-    print("len dataloader in dataloaderDuplicate", len(data_loader))
     return data_loader
 
 

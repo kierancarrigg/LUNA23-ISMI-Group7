@@ -6,7 +6,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gpus=1
 #SBATCH --mem=64G
-#SBATCH --time=15:00:00
+#SBATCH --time=22:00:00
 #SBATCH -o ./logs/slurm-%j.out # STDOUT
 
 # Load modules
