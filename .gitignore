@@ -1,3 +1,12 @@
 results/20230519_0_multitask_model/fold0/best_model.pth
 results/20230519_1_multitask_model/fold0/best_model.pth
 results/20230523_2_multitask_model_1fold/fold0/best_model.pth
+results/20230524_2_multitask_model_5fold/fold0/best_model.pth
+results/20230524_2_multitask_model_5fold/fold0/last_model.pth
+results/20230524_2_multitask_model_5fold/fold1/best_model.pth
+results/20230524_2_multitask_model_5fold/fold1/last_model.pth
+results/20230524_2_multitask_model_5fold/fold2/best_model.pth
+results/20230524_2_multitask_model_5fold/fold3/best_model.pth
+results/20230524_2_multitask_model_5fold/fold3/last_model.pth
+results/20230524_2_multitask_model_5fold/fold4/best_model.pth
+results/20230524_2_multitask_model_5fold/fold4/last_model.pth
