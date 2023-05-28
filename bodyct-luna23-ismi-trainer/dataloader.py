@@ -361,6 +361,7 @@ def get_data_loader(
     rotations=None,
     translations=None,
     pin_memory=True,
+    train=True
 ):
     dataset = NoduleDataset(
         data_dir=data_dir,

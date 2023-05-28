@@ -16,7 +16,7 @@ module load Python/3.9.5-GCCcore-10.3.0
 # Copy files to local scratch space
 cp -r data/ /scratch-shared/ssommers/
 cp data/luna23-ismi-train-set.csv /scratch-shared/ssommers/data/
-cp dataloaderDuplicate.py /scratch-shared/ssommers/
+cp bodyct-luna23-ismi-trainer/dataloader.py /scratch-shared/ssommers/
 cp probeersel2opnieuw.py /scratch-shared/ssommers/
 cp train-kieran2.py /scratch-shared/ssommers/
 

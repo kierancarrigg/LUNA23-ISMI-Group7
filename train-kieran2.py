@@ -1,6 +1,6 @@
 import sys
 import pandas
-import dataloaderDuplicate as dataloader
+import dataloader
 import torch
 import torch.nn.functional as F
 from pathlib import Path
@@ -159,7 +159,7 @@ class NoduleAnalyzer:
         self.optimizer = torch.optim.Adam(
             self.model.parameters(),
             lr=self.learning_rate,
-            weight_decay=1e-4,
+            weight_decay=1e-2,
         )
 
         # define the scheduler
@@ -186,7 +186,8 @@ class NoduleAnalyzer:
         weights = torch.DoubleTensor(weights)
         sampler = torch.utils.data.sampler.WeightedRandomSampler(
             weights,
-            num_samples = 4 * len(self.train_df),
+            # num_samples = 4 * len(self.train_df), # 🍕 (uncomment for data augmentation)
+            num_samples = len(self.train_df) 
         )
 
         self.train_loader = dataloader.get_data_loader(
@@ -379,7 +380,7 @@ if __name__ == "__main__":
         model = probeersel2opnieuw.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="19_multitask_model", 
+                                        experiment_id="21_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)
