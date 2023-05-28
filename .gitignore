@@ -10,3 +10,4 @@ results/20230524_2_multitask_model_5fold/fold3/best_model.pth
 results/20230524_2_multitask_model_5fold/fold3/last_model.pth
 results/20230524_2_multitask_model_5fold/fold4/best_model.pth
 results/20230524_2_multitask_model_5fold/fold4/last_model.pth
+*.pth
