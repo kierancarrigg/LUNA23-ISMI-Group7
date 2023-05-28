@@ -36,7 +36,7 @@ class MultiTaskNetwork(nn.Module):
         Encoder block which represents the shared feature space. 
         This could be substituted by the contraction block from a pre-trained U-net in the future.
         """
-        def __init__(self, n_input_channels, n_filters, dropout=None, pooling=True):
+        def __init__(self, n_input_channels, n_filters, dropout=None, pooling=True, prob = 0.5):
             super().__init__()
 
             layers = []
@@ -44,7 +44,7 @@ class MultiTaskNetwork(nn.Module):
                 layers.append(nn.MaxPool3d(kernel_size=2))
             layers += conv3x3(n_input_channels, n_filters)
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=prob))
             layers += conv3x3(n_filters, n_filters)
             self.pool_conv = nn.Sequential(*layers)
 
@@ -55,7 +55,7 @@ class MultiTaskNetwork(nn.Module):
         """
         Segmentation block which represents the decoder/expension block for the segmentation output
         """
-        def __init__(self, n_input_channels, n_filters, dropout=None):
+        def __init__(self, n_input_channels, n_filters, dropout=None, prob = 0.5):
             super().__init__()
 
             self.upconv = nn.Sequential(
@@ -68,7 +68,7 @@ class MultiTaskNetwork(nn.Module):
 
             layers = conv3x3(n_input_channels, n_filters)
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=prob))
             layers += conv3x3(n_filters, n_filters)
             self.conv = nn.Sequential(*layers)
 
@@ -78,7 +78,7 @@ class MultiTaskNetwork(nn.Module):
             return self.conv(y)
 
     class NoduleTypeBlock(nn.Module):
-        def __init__(self, n_input_channels, n_filters, dropout=None):
+        def __init__(self, n_input_channels, n_filters, dropout=None, prob = 0.5):
             super().__init__()
             """
             Nodule type decoder that is a fully connected network with the output being the probability per possible class
@@ -86,10 +86,10 @@ class MultiTaskNetwork(nn.Module):
             """
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
-                layers.append(nn.Dropout(p=0.5))
+                layers.append(nn.Dropout(p=prob))
             layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
-                layers.append(nn.Dropout(p=0.5))
+                layers.append(nn.Dropout(p=prob))
             layers.append(nn.Linear(n_filters//2, 4))
             # layers.append(nn.Linear(n_filters, 4))
             self.conv = nn.Sequential(*layers)
@@ -100,7 +100,7 @@ class MultiTaskNetwork(nn.Module):
             return y
 
     class MalignancyBlock(nn.Module):
-        def __init__(self, n_input_channels, n_filters, dropout=None):
+        def __init__(self, n_input_channels, n_filters, dropout=None, prob = 0.5):
             super().__init__()
             """
             Malignancy block that is a fully connected network with the output being the label 0 or 1
@@ -108,10 +108,10 @@ class MultiTaskNetwork(nn.Module):
             """
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
-                layers.append(nn.Dropout(p=0.5))
+                layers.append(nn.Dropout(p=prob))
             layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
-                layers.append(nn.Dropout(p=0.5))
+                layers.append(nn.Dropout(p=prob))
             layers.append(nn.Linear(n_filters//2, 1))
             # layers.append(nn.Linear(n_filters, 1))
             self.conv = nn.Sequential(*layers)

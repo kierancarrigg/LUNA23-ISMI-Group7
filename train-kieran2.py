@@ -159,6 +159,7 @@ class NoduleAnalyzer:
         self.optimizer = torch.optim.Adam(
             self.model.parameters(),
             lr=self.learning_rate,
+            weight_decay=1e-4,
         )
 
         # define the scheduler
@@ -375,10 +376,10 @@ if __name__ == "__main__":
     
     
     for i in range(1):
-        model = probeersel2opnieuw.MultiTaskNetwork(n_input_channels=1, n_filters=64)
+        model = probeersel2opnieuw.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="8_multitask_model", 
+                                        experiment_id="19_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)
