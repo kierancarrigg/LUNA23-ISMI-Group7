@@ -1,0 +1,25 @@
+[INFO][03:49:48] Created a temporary directory at /scratch-local/ssommers.2809529/tmp78mlp5fk
+[INFO][03:49:48] Writing /scratch-local/ssommers.2809529/tmp78mlp5fk/_remote_module_non_scriptable.py
+folds found! :)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran2.py", line 386, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran2.py", line 257, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran2.py", line 192, in _initialize_data_loaders
+    self.train_loader = dataloader.get_data_loader(
+TypeError: get_data_loader() got an unexpected keyword argument 'train'
+
+JOB STATISTICS
+==============
+Job ID: 2809529
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:26
+CPU Efficiency: 1.59% of 00:27:18 core-walltime
+Job Wall-clock time: 00:01:31
+Memory Utilized: 17.47 MB
+Memory Efficiency: 0.03% of 64.00 GB
