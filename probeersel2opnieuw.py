@@ -210,7 +210,7 @@ class MultiTaskNetwork(nn.Module):
         result_noduletype = result['nodule-type']
         result_malignancy = result['malignancy']
         seg_loss = dice_loss(result_segmentation, original_masks)
-        type_loss = F.cross_entropy(result_noduletype, noduletype_labels.squeeze().long(), label_smoothing=0.1)
+        type_loss = F.cross_entropy(result_noduletype, noduletype_labels.squeeze().long(), label_smoothing=0.3)
         malig_loss = F.binary_cross_entropy(result_malignancy, malignancy_labels)
         overall_loss = malig_loss + type_loss + seg_loss
         return seg_loss, type_loss, malig_loss, overall_loss

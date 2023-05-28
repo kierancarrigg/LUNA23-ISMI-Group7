@@ -60,11 +60,11 @@ def perform_inference_on_test_set(workspace: Path):
     multitask_model.eval()
 
     # ⚠️ make sure to adjust this path
-    ckpt = torch.load(workspace / "results/20230527_15_multitask_model/fold0/best_model.pth")
+    ckpt = torch.load(workspace / "results/20230528_20_multitask_model/fold0/best_model.pth")
     multitask_model.load_state_dict(ckpt)
 
     test_set_path = Path(workspace / "data" / "test_set" / "images")
-    save_path = workspace / "results" / "20230527_15_multitask_model" / "fold0" / "test_set_predictions"
+    save_path = workspace / "results" / "20230528_20_multitask_model" / "fold0" / "test_set_predictions"
 
     segmentation_save_path = save_path / "segmentations"
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
