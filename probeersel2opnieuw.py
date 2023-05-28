@@ -36,7 +36,7 @@ class MultiTaskNetwork(nn.Module):
         Encoder block which represents the shared feature space. 
         This could be substituted by the contraction block from a pre-trained U-net in the future.
         """
-        def __init__(self, n_input_channels, n_filters, dropout=None, pooling=True):
+        def __init__(self, n_input_channels, n_filters, dropout=None, pooling=True, prob = 0.5):
             super().__init__()
 
             layers = []
@@ -44,7 +44,7 @@ class MultiTaskNetwork(nn.Module):
                 layers.append(nn.MaxPool3d(kernel_size=2))
             layers += conv3x3(n_input_channels, n_filters)
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=prob))
             layers += conv3x3(n_filters, n_filters)
             self.pool_conv = nn.Sequential(*layers)
 
@@ -55,7 +55,7 @@ class MultiTaskNetwork(nn.Module):
         """
         Segmentation block which represents the decoder/expension block for the segmentation output
         """
-        def __init__(self, n_input_channels, n_filters, dropout=None):
+        def __init__(self, n_input_channels, n_filters, dropout=None, prob = 0.5):
             super().__init__()
 
             self.upconv = nn.Sequential(
@@ -68,7 +68,7 @@ class MultiTaskNetwork(nn.Module):
 
             layers = conv3x3(n_input_channels, n_filters)
             if dropout:
-                layers.append(nn.Dropout(p=dropout))
+                layers.append(nn.Dropout(p=prob))
             layers += conv3x3(n_filters, n_filters)
             self.conv = nn.Sequential(*layers)
 
@@ -78,17 +78,17 @@ class MultiTaskNetwork(nn.Module):
             return self.conv(y)
 
     class ClassificationBlock(nn.Module):
-        def __init__(self, n_input_channels, n_filters, dropout=None):
+        def __init__(self, n_input_channels, n_filters, dropout=None, prob = 0.5):
             super().__init__()
             """
             Classification weight sharing - let's take weight sharing a stop further!
             """
             layers = [nn.Linear(n_input_channels, n_filters)]
             if dropout:
-                layers.append(nn.Dropout(p=0.5))
+                layers.append(nn.Dropout(p=prob))
             layers.append(nn.Linear(n_filters, n_filters//2))
             if dropout:
-                layers.append(nn.Dropout(p=0.5))
+                layers.append(nn.Dropout(p=prob))
             self.conv = nn.Sequential(*layers)
 
         def forward(self, incoming):
@@ -210,7 +210,7 @@ class MultiTaskNetwork(nn.Module):
         result_noduletype = result['nodule-type']
         result_malignancy = result['malignancy']
         seg_loss = dice_loss(result_segmentation, original_masks)
-        type_loss = F.cross_entropy(result_noduletype, noduletype_labels.squeeze().long())
+        type_loss = F.cross_entropy(result_noduletype, noduletype_labels.squeeze().long(), label_smoothing=0.1)
         malig_loss = F.binary_cross_entropy(result_malignancy, malignancy_labels)
-        overall_loss = malig_loss + type_loss + seg_loss
+        overall_loss = malig_loss + 4*type_loss + seg_loss
         return seg_loss, type_loss, malig_loss, overall_loss

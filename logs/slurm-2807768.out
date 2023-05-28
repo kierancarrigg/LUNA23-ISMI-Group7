@@ -1,0 +1,23 @@
+[INFO][11:29:41] Created a temporary directory at /scratch-local/ssommers.2807768/tmpzaa2xjad
+[INFO][11:29:42] Writing /scratch-local/ssommers.2807768/tmpzaa2xjad/_remote_module_non_scriptable.py
+[INFO][11:29:45]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230527_15_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  1%|          | 1/135 [00:22<49:53, 22.34s/it]  1%|▏         | 2/135 [00:22<20:35,  9.29s/it]  2%|▏         | 3/135 [00:22<11:30,  5.23s/it]slurmstepd: error: *** JOB 2807768 ON gcn14 CANCELLED AT 2023-05-27T23:30:08 ***
+
+JOB STATISTICS
+==============
+Job ID: 2807768
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.06% of 00:28:48 core-walltime
+Job Wall-clock time: 00:01:36
+Memory Utilized: 3.42 GB
+Memory Efficiency: 5.35% of 64.00 GB
