@@ -545,7 +545,7 @@ def extract_patch(
         CTData,
         srcVoxelSpacing,
         overrideMatrix,
-        center=coord,
+        center=overrideCoord,
         output_shape=np.array(output_shape),
         output_voxel_spacing=np.array(voxel_spacing),
         order=1,

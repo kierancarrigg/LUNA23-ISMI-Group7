@@ -131,7 +131,7 @@ class MultiTaskNetwork(nn.Module):
         """
         self.contraction = nn.ModuleList()
         filters = n_filters
-        for i in range(1, 6):
+        for i in range(1, 5):
             if i == 1:
                 n_in = n_input_channels
             self.contraction.append(
@@ -139,13 +139,13 @@ class MultiTaskNetwork(nn.Module):
                     n_in, filters, dropout=dropout if i > 1 else None, pooling=i > 1
                 )
             )
-            if i<5:
+            if i<4:
                 n_in = filters
                 filters = filters * 2
 
         self.expansion = nn.ModuleList()
         f = filters
-        for i in range(1, 5):
+        for i in range(1, 4):
             f1 = f // 2
             self.expansion.append(self.SegmentationBlock(f, f1, dropout=dropout))
             f = f1
@@ -160,7 +160,7 @@ class MultiTaskNetwork(nn.Module):
         else:
             self.segmentation = output_layer
 
-        self.classification = self.ClassificationBlock(1024*64,128,dropout) # 65532 = 1024 * 64 = latent dimensie * n_filters
+        self.classification = self.ClassificationBlock(262144,128,dropout) 
         self.nodule_type = self.NoduleTypeBlock(128) #inspiratie voor n_filters=128 uit COVID-19 multitask model
         self.malignant = self.MalignancyBlock(128)
 
@@ -212,5 +212,5 @@ class MultiTaskNetwork(nn.Module):
         seg_loss = dice_loss(result_segmentation, original_masks)
         type_loss = F.cross_entropy(result_noduletype, noduletype_labels.squeeze().long(), label_smoothing=0.3)
         malig_loss = F.binary_cross_entropy(result_malignancy, malignancy_labels)
-        overall_loss = malig_loss + type_loss + seg_loss
+        overall_loss = malig_loss + type_loss + 2*seg_loss
         return seg_loss, type_loss, malig_loss, overall_loss

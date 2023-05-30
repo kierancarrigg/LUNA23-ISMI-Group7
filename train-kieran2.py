@@ -5,7 +5,8 @@ import torch
 import torch.nn.functional as F
 from pathlib import Path
 from tqdm import tqdm
-import probeersel2opnieuw
+# import probeersel2opnieuw as probeersel
+import probeersel3lol as probeersel
 import numpy as np
 from datetime import datetime
 from sklearn.model_selection import StratifiedKFold
@@ -376,11 +377,11 @@ if __name__ == "__main__":
 
     
     
-    for i in range(4,5):
-        model = probeersel2opnieuw.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
+    for i in range(1):
+        model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="20_multitask_model", 
+                                        experiment_id="25_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)

@@ -69,9 +69,6 @@ def perform_inference_on_test_set(workspace: Path):
     segmentation_save_path = save_path / "segmentations"
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
 
-    image_save_path = save_path / "patches"
-    image_save_path.mkdir(exist_ok=True, parents=True)
-
     patch_size = np.array([64, 128, 128])
     size_mm = 70
     # size_mm = 50
@@ -114,13 +111,6 @@ def perform_inference_on_test_set(workspace: Path):
         image = image.reshape(1, 1, size_px, size_px, size_px).astype(np.float32)
         image = dataloader.clip_and_scale(image)
 
-        image_download = sitk.GetImageFromArray(image)
-        sitk.WriteImage(
-            image_download,
-            str(image_save_path / f"{noduleid}.mha"),
-            True,
-        )
-
         image = torch.from_numpy(image).cuda()
 
         with torch.no_grad():
@@ -132,42 +122,43 @@ def perform_inference_on_test_set(workspace: Path):
 
         # post-process segmentation
 
+        size_mm = 50
         # resample image to original spacing
-        # segmentation = snd.zoom(
-        #     segmentation,
-        #     (size_mm / size_px) / metad["spacing"],
-        #     order=1,
-        # )
+        segmentation = snd.zoom(
+            segmentation,
+            (size_mm / size_px) / metad["spacing"],
+            order=1,
+        )
 
         # pad image
-        # diff = metad["shape"] - segmentation.shape
-        # pad_widths = [
-        #     (np.round(a), np.round(b))
-        #     for a, b in zip(
-        #         diff // 2.0 + 1,
-        #         diff - diff // 2.0 - 1,
-        #     )
-        # ]
-        # pad_widths = np.array(pad_widths).astype(int)
-        # pad_widths = np.clip(pad_widths, 0, pad_widths.max())
-        # segmentation = np.pad(
-        #     segmentation,
-        #     pad_width=pad_widths,
-        #     mode="constant",
-        #     constant_values=0,
-        # )
+        diff = metad["shape"] - segmentation.shape
+        pad_widths = [
+            (np.round(a), np.round(b))
+            for a, b in zip(
+                diff // 2.0 + 1,
+                diff - diff // 2.0 - 1,
+            )
+        ]
+        pad_widths = np.array(pad_widths).astype(int)
+        pad_widths = np.clip(pad_widths, 0, pad_widths.max())
+        segmentation = np.pad(
+            segmentation,
+            pad_width=pad_widths,
+            mode="constant",
+            constant_values=0,
+        )
 
         # crop, if necessary
-        # if diff.min() < 0:
+        if diff.min() < 0:
 
-        #     shape = np.array(segmentation.shape)
-        #     center = shape // 2
+            shape = np.array(segmentation.shape)
+            center = shape // 2
 
-        #     segmentation = segmentation[
-        #         center[0] - patch_size[0] // 2 : center[0] + patch_size[0] // 2,
-        #         center[1] - patch_size[1] // 2 : center[1] + patch_size[1] // 2,
-        #         center[2] - patch_size[2] // 2 : center[2] + patch_size[2] // 2,
-        #     ]
+            segmentation = segmentation[
+                center[0] - patch_size[0] // 2 : center[0] + patch_size[0] // 2,
+                center[1] - patch_size[1] // 2 : center[1] + patch_size[1] // 2,
+                center[2] - patch_size[2] // 2 : center[2] + patch_size[2] // 2,
+            ]
 
         # apply threshold
         segmentation = (segmentation > 0.5).astype(np.uint8)
