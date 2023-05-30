@@ -1,0 +1,47 @@
+[INFO][02:59:38] Created a temporary directory at /scratch-local/ssommers.2817347/tmptck42vw5
+[INFO][02:59:38] Writing /scratch-local/ssommers.2817347/tmptck42vw5/_remote_module_non_scriptable.py
+[INFO][02:59:42]  training, epoch: 1 / 400, with fold: 4
+folds found! :)
+Start of training model:  20230530_25_multitask_model
+
+
+
+  0%|          | 0/137 [00:00<?, ?it/s]  0%|          | 0/137 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran2.py", line 388, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran2.py", line 302, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran2.py", line 232, in forward
+    outputs = self.model(images)  # do the forward pass
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 186, in forward
+    seg = expand(seg, features)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 76, in forward
+    y = self.upconv(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 1108, in forward
+    return F.conv_transpose3d(
+RuntimeError: Given transposed=1, weight of size [1024, 512, 2, 2, 2], expected input[16, 512, 8, 8, 8] to have 1024 channels, but got 512 channels instead
+
+JOB STATISTICS
+==============
+Job ID: 2817347
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:22
+CPU Efficiency: 5.36% of 00:25:30 core-walltime
+Job Wall-clock time: 00:01:25
+Memory Utilized: 17.07 MB
+Memory Efficiency: 0.03% of 64.00 GB
