@@ -1,0 +1,55 @@
+  0%|          | 0/43 [00:00<?, ?it/s]  0%|          | 0/43 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 639, in <module>
+    test(workspace)
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 623, in test
+    for batch_data in tqdm(train_loader):
+  File "/home/ssommers/.local/lib/python3.9/site-packages/tqdm/std.py", line 1178, in __iter__
+    for obj in iterable:
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+TypeError: Caught TypeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataset.py", line 243, in __getitem__
+    return self.datasets[dataset_idx][sample_idx]
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 337, in __getitem__
+    patch, mask, metad = self._extract_patch(pd)
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 297, in _extract_patch
+    image = autocontraster(image)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 2012, in forward
+    return F.autocontrast(img)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torchvision/transforms/functional.py", line 1496, in autocontrast
+    return F_pil.autocontrast(img)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torchvision/transforms/_functional_pil.py", line 383, in autocontrast
+    raise TypeError(f"img should be PIL Image. Got {type(img)}")
+TypeError: img should be PIL Image. Got <class 'numpy.ndarray'>
+
+
+JOB STATISTICS
+==============
+Job ID: 2816331
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:23:24 core-walltime
+Job Wall-clock time: 00:01:18
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
