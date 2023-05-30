@@ -13,6 +13,7 @@ import scipy.ndimage as ndi
 import SimpleITK as sitk
 import logging
 import sys
+import torchvision.transforms as T
 
 logging.basicConfig(
     level=logging.INFO,
@@ -319,6 +320,9 @@ class NoduleDataset(data.Dataset):
         patch = patch.astype(np.float32)
         mask = mask.astype(np.float32)
 
+        # Enhance contrast
+        # patch = enhance_contrast(patch)
+
         # clip and scale...
         patch = clip_and_scale(patch)
 
@@ -541,7 +545,7 @@ def extract_patch(
         CTData,
         srcVoxelSpacing,
         overrideMatrix,
-        center=overrideCoord,
+        center=coord,
         output_shape=np.array(output_shape),
         output_voxel_spacing=np.array(voxel_spacing),
         order=1,
@@ -625,6 +629,11 @@ def test(workspace: Path = Path("/code/bodyct-luna23-ismi-trainer/")):
         print(list(c))
         print(list(iets))
         print()
+
+def enhance_contrast(patch):
+    enhanced_patch = patch
+    return enhanced_patch
+
 
 
 if __name__ == "__main__":
