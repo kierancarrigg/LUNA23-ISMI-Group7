@@ -1,0 +1,31 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/fold1/test_set_predictions2/': File exists
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 0/256 [00:00<?, ?it/s]
+OverrideCoord: [32.    53.375 53.375]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference.py", line 211, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference.py", line 117, in perform_inference_on_test_set
+    sitk.WriteImage(
+  File "/home/ssommers/.local/lib/python3.9/site-packages/SimpleITK/extra.py", line 405, in WriteImage
+    return writer.Execute(image)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/SimpleITK/SimpleITK.py", line 7913, in Execute
+    return _SimpleITK.ImageFileWriter_Execute(self, *args)
+TypeError: Wrong number or type of arguments for overloaded function 'ImageFileWriter_Execute'.
+  Possible C/C++ prototypes are:
+    itk::simple::ImageFileWriter::Execute(itk::simple::Image const &)
+    itk::simple::ImageFileWriter::Execute(itk::simple::Image const &,std::string const &,bool,int)
+
+
+JOB STATISTICS
+==============
+Job ID: 2816874
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:14
+CPU Efficiency: 0.83% of 00:28:12 core-walltime
+Job Wall-clock time: 00:01:34
+Memory Utilized: 4.21 MB
+Memory Efficiency: 0.01% of 64.00 GB

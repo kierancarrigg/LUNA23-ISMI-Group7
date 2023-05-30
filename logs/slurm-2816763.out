@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/dataloaderDuplicate.py", line 17, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+
+JOB STATISTICS
+==============
+Job ID: 2816763
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:06
+CPU Efficiency: 0.58% of 00:17:06 core-walltime
+Job Wall-clock time: 00:00:57
+Memory Utilized: 3.95 MB
+Memory Efficiency: 0.01% of 64.00 GB
