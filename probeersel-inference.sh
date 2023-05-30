@@ -20,7 +20,7 @@ cp probeersel2opnieuw.py /scratch-shared/ssommers/
 cp multitask_inference.py /scratch-shared/ssommers/
 # cp -r results/ /scratch-shared/ssommers/
 cp -r results/20230528_20_multitask_model/ /scratch-shared/ssommers/results/
-mkdir /scratch-shared/ssommers/results/20230528_20_multitask_model/fold0/test_set_predictions/
+mkdir /scratch-shared/ssommers/results/20230528_20_multitask_model/fold1/test_set_predictions2/
 
 # Set project directory to scratch space
 project_dir=/scratch-shared/ssommers/
@@ -29,4 +29,4 @@ project_dir=/scratch-shared/ssommers/
 python /scratch-shared/ssommers/multitask_inference.py $project_dir
 
 # Copy results from scratch space
-cp -r /scratch-shared/ssommers/results/20230528_20_multitask_model/fold0/test_set_predictions/ results/20230528_20_multitask_model/fold0/
+cp -r /scratch-shared/ssommers/results/20230528_20_multitask_model/fold1/test_set_predictions2/ results/20230528_20_multitask_model/fold1/

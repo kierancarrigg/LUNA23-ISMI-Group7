@@ -60,17 +60,18 @@ def perform_inference_on_test_set(workspace: Path):
     multitask_model.eval()
 
     # ⚠️ make sure to adjust this path
-    ckpt = torch.load(workspace / "results/20230528_20_multitask_model/fold0/best_model.pth")
+    ckpt = torch.load(workspace / "results/20230528_20_multitask_model/fold1/best_model.pth")
     multitask_model.load_state_dict(ckpt)
 
     test_set_path = Path(workspace / "data" / "test_set" / "images")
-    save_path = workspace / "results" / "20230528_20_multitask_model" / "fold0" / "test_set_predictions"
+    save_path = workspace / "results" / "20230528_20_multitask_model" / "fold1" / "test_set_predictions2"
 
     segmentation_save_path = save_path / "segmentations"
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
 
     patch_size = np.array([64, 128, 128])
-    size_mm = 50
+    size_mm = 70
+    # size_mm = 50
     size_px = 64
 
     predictions = []
@@ -130,21 +131,21 @@ def perform_inference_on_test_set(workspace: Path):
 
         # pad image
         diff = metad["shape"] - segmentation.shape
-        pad_widths = [
-            (np.round(a), np.round(b))
-            for a, b in zip(
-                diff // 2.0 + 1,
-                diff - diff // 2.0 - 1,
-            )
-        ]
-        pad_widths = np.array(pad_widths).astype(int)
-        pad_widths = np.clip(pad_widths, 0, pad_widths.max())
-        segmentation = np.pad(
-            segmentation,
-            pad_width=pad_widths,
-            mode="constant",
-            constant_values=0,
-        )
+        # pad_widths = [
+        #     (np.round(a), np.round(b))
+        #     for a, b in zip(
+        #         diff // 2.0 + 1,
+        #         diff - diff // 2.0 - 1,
+        #     )
+        # ]
+        # pad_widths = np.array(pad_widths).astype(int)
+        # pad_widths = np.clip(pad_widths, 0, pad_widths.max())
+        # segmentation = np.pad(
+        #     segmentation,
+        #     pad_width=pad_widths,
+        #     mode="constant",
+        #     constant_values=0,
+        # )
 
         # crop, if necessary
         if diff.min() < 0:
