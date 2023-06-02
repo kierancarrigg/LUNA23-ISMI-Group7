@@ -160,7 +160,7 @@ class MultiTaskNetwork(nn.Module):
         else:
             self.segmentation = output_layer
 
-        self.classification = self.ClassificationBlock(262144,128,dropout) 
+        self.classification = self.ClassificationBlock(64*64*64,128,dropout) # image/patch size x patch size x n_filters
         self.nodule_type = self.NoduleTypeBlock(128) #inspiratie voor n_filters=128 uit COVID-19 multitask model
         self.malignant = self.MalignancyBlock(128)
 
@@ -170,7 +170,6 @@ class MultiTaskNetwork(nn.Module):
         """
         # Pass incoming through contraction path
         latent = incoming
-        
         cf = []
         i = 0
         for contract in self.contraction:

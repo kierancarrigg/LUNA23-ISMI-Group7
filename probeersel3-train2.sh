@@ -18,13 +18,13 @@ cp -r data/ /scratch-shared/ssommers/
 cp data/luna23-ismi-train-set.csv /scratch-shared/ssommers/data/
 cp dataloaderDuplicate.py /scratch-shared/ssommers/
 cp probeersel3lol.py /scratch-shared/ssommers/
-cp train-kieran2.py /scratch-shared/ssommers/
+cp train-kieran3.py /scratch-shared/ssommers/
 
 # Set project directory to scratch space
 project_dir=/scratch-shared/ssommers/
 
 # Execute program
-python /scratch-shared/ssommers/train-kieran2.py $project_dir
+python /scratch-shared/ssommers/train-kieran3.py $project_dir
 
 # Copy results from scratch space
 cp -r /scratch-shared/ssommers/results/ .

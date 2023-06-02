@@ -70,8 +70,7 @@ def perform_inference_on_test_set(workspace: Path):
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
 
     patch_size = np.array([64, 128, 128])
-    size_mm = 70
-    # size_mm = 50
+    size_mm = 50
     size_px = 64
 
     predictions = []
@@ -111,6 +110,8 @@ def perform_inference_on_test_set(workspace: Path):
         image = image.reshape(1, 1, size_px, size_px, size_px).astype(np.float32)
         image = dataloader.clip_and_scale(image)
 
+        print(type(image))
+
         image = torch.from_numpy(image).cuda()
 
         with torch.no_grad():
@@ -122,7 +123,6 @@ def perform_inference_on_test_set(workspace: Path):
 
         # post-process segmentation
 
-        size_mm = 50
         # resample image to original spacing
         segmentation = snd.zoom(
             segmentation,
