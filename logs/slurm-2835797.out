@@ -1,0 +1,53 @@
+[INFO][12:48:08] Created a temporary directory at /scratch-local/ssommers.2835797/tmprwmc_2o9
+[INFO][12:48:08] Writing /scratch-local/ssommers.2835797/tmprwmc_2o9/_remote_module_non_scriptable.py
+[INFO][12:48:09]  training, epoch: 1 / 400, with fold: 0
+128
+256
+512
+512
+folds found! :)
+Start of training model:  20230602_25_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:05<?, ?it/s]
+torch.Size([16, 262144])
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran2.py", line 388, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran2.py", line 302, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran2.py", line 232, in forward
+    outputs = self.model(images)  # do the forward pass
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 196, in forward
+    intermediate = self.classification(latent)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 95, in forward
+    y = self.conv(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (16x262144 and 32768x128)
+
+JOB STATISTICS
+==============
+Job ID: 2835797
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:24:00 core-walltime
+Job Wall-clock time: 00:01:20
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

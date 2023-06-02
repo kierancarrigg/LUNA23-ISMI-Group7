@@ -1,0 +1,47 @@
+[INFO][01:23:58] Created a temporary directory at /scratch-local/ssommers.2835912/tmpcpguxzb9
+[INFO][01:23:58] Writing /scratch-local/ssommers.2835912/tmpcpguxzb9/_remote_module_non_scriptable.py
+[INFO][01:24:01]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230602_25_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:06<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 388, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 302, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran3.py", line 232, in forward
+    outputs = self.model(images)  # do the forward pass
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 193, in forward
+    intermediate = self.classification(latent)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 95, in forward
+    y = self.conv(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (16x1048576 and 262144x128)
+
+JOB STATISTICS
+==============
+Job ID: 2835912
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:24
+CPU Efficiency: 4.28% of 00:32:42 core-walltime
+Job Wall-clock time: 00:01:49
+Memory Utilized: 17.25 MB
+Memory Efficiency: 0.03% of 64.00 GB
