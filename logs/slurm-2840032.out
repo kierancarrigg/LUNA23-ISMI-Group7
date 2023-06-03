@@ -1,0 +1,31 @@
+[INFO][09:51:45] Created a temporary directory at /scratch-local/ssommers.2840032/tmp0lq7w5en
+[INFO][09:51:45] Writing /scratch-local/ssommers.2840032/tmp0lq7w5en/_remote_module_non_scriptable.py
+[INFO][09:51:48]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:03<?, ?it/s]
+<class 'dict'>
+9
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 420, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 326, in train
+    print(len(batch_data[0]))
+KeyError: 0
+
+JOB STATISTICS
+==============
+Job ID: 2840032
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:00
+CPU Efficiency: 3.51% of 00:28:30 core-walltime
+Job Wall-clock time: 00:01:35
+Memory Utilized: 1.21 GB
+Memory Efficiency: 1.89% of 64.00 GB

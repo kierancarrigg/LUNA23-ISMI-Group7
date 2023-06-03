@@ -1,0 +1,47 @@
+[INFO][09:39:29] Created a temporary directory at /scratch-local/ssommers.2840000/tmpuwahqr7s
+[INFO][09:39:29] Writing /scratch-local/ssommers.2840000/tmpuwahqr7s/_remote_module_non_scriptable.py
+[INFO][09:39:32]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 421, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 330, in train
+    batch_data, mean, std = normalization(batch_data) # gets a dictionary???
+  File "/scratch-shared/ssommers/train-kieran4.py", line 43, in normalization
+    print(pandas.DataFrame.from_dict(x_train).shape)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/frame.py", line 1760, in from_dict
+    return cls(data, index=index, columns=columns, dtype=dtype)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/frame.py", line 709, in __init__
+    mgr = dict_to_mgr(data, index, columns, dtype=dtype, copy=copy, typ=manager)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/internals/construction.py", line 481, in dict_to_mgr
+    return arrays_to_mgr(arrays, columns, index, dtype=dtype, typ=typ, consolidate=copy)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/internals/construction.py", line 120, in arrays_to_mgr
+    arrays, refs = _homogenize(arrays, index, dtype)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/internals/construction.py", line 607, in _homogenize
+    val = sanitize_array(val, index, dtype=dtype, copy=False)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/construction.py", line 581, in sanitize_array
+    return sanitize_array(
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/construction.py", line 607, in sanitize_array
+    subarr = _sanitize_ndim(subarr, data, dtype, index, allow_2d=allow_2d)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/construction.py", line 666, in _sanitize_ndim
+    raise ValueError(
+ValueError: Data must be 1-dimensional, got ndarray of shape (16, 1, 64, 64, 64) instead
+
+JOB STATISTICS
+==============
+Job ID: 2840000
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:05
+CPU Efficiency: 2.64% of 00:41:06 core-walltime
+Job Wall-clock time: 00:02:17
+Memory Utilized: 17.50 MB
+Memory Efficiency: 0.03% of 64.00 GB

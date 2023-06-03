@@ -1,0 +1,21 @@
+cp: cannot stat 'dataloader.py': No such file or directory
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/': File exists
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 5, in <module>
+    import dataloader as dataloader
+ModuleNotFoundError: No module named 'dataloader'
+
+JOB STATISTICS
+==============
+Job ID: 2841698
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:24:54 core-walltime
+Job Wall-clock time: 00:01:23
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

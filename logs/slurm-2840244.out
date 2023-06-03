@@ -1,0 +1,33 @@
+[INFO][10:28:36] Created a temporary directory at /scratch-local/ssommers.2840244/tmp0caqso2z
+[INFO][10:28:36] Writing /scratch-local/ssommers.2840244/tmp0caqso2z/_remote_module_non_scriptable.py
+[INFO][10:28:40]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:15<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 410, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 322, in train
+    outputs, targets, losses, mean, std = self.forward(
+  File "/scratch-shared/ssommers/train-kieran4.py", line 249, in forward
+    images, train_mean, train_std = normalization(images)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 49, in normalization
+    return x_train_normalized.reshape(x_train.shape), mean, std
+RuntimeError: shape '[16, 1, 64, 64, 64]' is invalid for input of size 67108864
+
+JOB STATISTICS
+==============
+Job ID: 2840244
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:28
+CPU Efficiency: 2.78% of 00:52:48 core-walltime
+Job Wall-clock time: 00:02:56
+Memory Utilized: 2.10 GB
+Memory Efficiency: 3.29% of 64.00 GB

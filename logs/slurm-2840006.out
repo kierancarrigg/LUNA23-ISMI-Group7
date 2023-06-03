@@ -1,0 +1,30 @@
+[INFO][09:43:49] Created a temporary directory at /scratch-local/ssommers.2840006/tmpo93hxkb_
+[INFO][09:43:49] Writing /scratch-local/ssommers.2840006/tmpo93hxkb_/_remote_module_non_scriptable.py
+[INFO][09:43:52]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:04<?, ?it/s]
+<class 'dict'>
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 419, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 325, in train
+    print(batch_data.shape)
+AttributeError: 'dict' object has no attribute 'shape'
+
+JOB STATISTICS
+==============
+Job ID: 2840006
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:14
+CPU Efficiency: 4.42% of 00:27:54 core-walltime
+Job Wall-clock time: 00:01:33
+Memory Utilized: 435.71 MB
+Memory Efficiency: 0.66% of 64.00 GB

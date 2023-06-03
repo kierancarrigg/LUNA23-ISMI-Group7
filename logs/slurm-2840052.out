@@ -1,0 +1,40 @@
+[INFO][10:06:27] Created a temporary directory at /scratch-local/ssommers.2840052/tmpy72ex2sn
+[INFO][10:06:27] Writing /scratch-local/ssommers.2840052/tmpy72ex2sn/_remote_module_non_scriptable.py
+[INFO][10:06:30]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 420, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 332, in train
+    outputs, targets, losses, mean, std = self.forward(
+  File "/scratch-shared/ssommers/train-kieran4.py", line 259, in forward
+    images, train_mean, train_std = normalization(images)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 52, in normalization
+    mean.append(np.mean(x_train[:,feature])) # array of mean value per feature 
+  File "<__array_function__ internals>", line 200, in mean
+  File "/home/ssommers/.local/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 3462, in mean
+    return mean(axis=axis, dtype=dtype, out=out, **kwargs)
+TypeError: mean() received an invalid combination of arguments - got (dtype=NoneType, out=NoneType, axis=NoneType, ), but expected one of:
+ * (*, torch.dtype dtype)
+ * (tuple of ints dim, bool keepdim, *, torch.dtype dtype)
+ * (tuple of names dim, bool keepdim, *, torch.dtype dtype)
+
+
+JOB STATISTICS
+==============
+Job ID: 2840052
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:19
+CPU Efficiency: 5.70% of 00:23:06 core-walltime
+Job Wall-clock time: 00:01:17
+Memory Utilized: 17.25 MB
+Memory Efficiency: 0.03% of 64.00 GB

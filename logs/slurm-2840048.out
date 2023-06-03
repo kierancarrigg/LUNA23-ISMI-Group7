@@ -1,0 +1,39 @@
+[INFO][10:01:51] Created a temporary directory at /scratch-local/ssommers.2840048/tmpumg14u2o
+[INFO][10:01:51] Writing /scratch-local/ssommers.2840048/tmpumg14u2o/_remote_module_non_scriptable.py
+[INFO][10:01:54]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 420, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 332, in train
+    outputs, targets, losses, mean, std = self.forward(
+  File "/scratch-shared/ssommers/train-kieran4.py", line 259, in forward
+    images, train_mean, train_std = normalization(images)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 43, in normalization
+    x_train_normalized = np.zeros_like(x_train) # array of normalized features
+  File "<__array_function__ internals>", line 200, in zeros_like
+  File "/home/ssommers/.local/lib/python3.9/site-packages/numpy/core/numeric.py", line 139, in zeros_like
+    res = empty_like(a, dtype=dtype, order=order, subok=subok, shape=shape)
+  File "<__array_function__ internals>", line 200, in empty_like
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_tensor.py", line 970, in __array__
+    return self.numpy()
+TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+
+JOB STATISTICS
+==============
+Job ID: 2840048
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:19
+CPU Efficiency: 4.93% of 00:26:42 core-walltime
+Job Wall-clock time: 00:01:29
+Memory Utilized: 17.22 MB
+Memory Efficiency: 0.03% of 64.00 GB

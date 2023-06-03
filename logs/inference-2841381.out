@@ -1,0 +1,25 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/': File exists
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 0/256 [00:02<?, ?it/s]
+<class 'numpy.ndarray'>
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 232, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 152, in perform_inference_on_test_set
+    segmentation = snd.zoom(
+  File "/home/ssommers/.local/lib/python3.9/site-packages/scipy/ndimage/_interpolation.py", line 769, in zoom
+    raise RuntimeError('input and output rank must be > 0')
+RuntimeError: input and output rank must be > 0
+
+JOB STATISTICS
+==============
+Job ID: 2841381
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:18
+CPU Efficiency: 0.42% of 01:11:06 core-walltime
+Job Wall-clock time: 00:03:57
+Memory Utilized: 1.30 GB
+Memory Efficiency: 2.04% of 64.00 GB

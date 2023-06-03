@@ -1,0 +1,27 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/': File exists
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference.py", line 203, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference.py", line 63, in perform_inference_on_test_set
+    ckpt = torch.load(workspace / "results/20230602_25_multitask_model/fold0/best_model.pth")
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/serialization.py", line 791, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/serialization.py", line 271, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/serialization.py", line 252, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch-shared/ssommers/results/20230602_25_multitask_model/fold0/best_model.pth'
+
+JOB STATISTICS
+==============
+Job ID: 2841257
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:13
+CPU Efficiency: 1.03% of 00:21:00 core-walltime
+Job Wall-clock time: 00:01:10
+Memory Utilized: 369.81 MB
+Memory Efficiency: 0.56% of 64.00 GB

@@ -1,0 +1,29 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/': File exists
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 0/256 [00:02<?, ?it/s]
+<class 'numpy.ndarray'>
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 231, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 188, in perform_inference_on_test_set
+    segmentation = sitk.GetImageFromArray(segmentation)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/SimpleITK/extra.py", line 304, in GetImageFromArray
+    img = Image(shape, id, number_of_components)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/SimpleITK/SimpleITK.py", line 3146, in __init__
+    _SimpleITK.Image_swiginit(self, _SimpleITK.new_Image(*args))
+RuntimeError: Exception thrown in SimpleITK new_Image: /tmp/SimpleITK/Code/Common/src/sitkImageExplicit.cxx:101:
+sitk::ERROR: Unsupported number of dimensions specified by size: [ ]!
+The maximum supported Image dimension is 5.
+
+JOB STATISTICS
+==============
+Job ID: 2841475
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:18
+CPU Efficiency: 0.91% of 00:33:00 core-walltime
+Job Wall-clock time: 00:01:50
+Memory Utilized: 1.40 GB
+Memory Efficiency: 2.18% of 64.00 GB

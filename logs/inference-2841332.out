@@ -1,0 +1,26 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/': File exists
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 0/256 [00:02<?, ?it/s]
+<class 'numpy.ndarray'>
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 232, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 142, in perform_inference_on_test_set
+    segmentations = np.array(segmentations)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_tensor.py", line 970, in __array__
+    return self.numpy()
+TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+
+JOB STATISTICS
+==============
+Job ID: 2841332
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:19:30 core-walltime
+Job Wall-clock time: 00:01:05
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

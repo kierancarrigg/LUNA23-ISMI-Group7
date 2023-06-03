@@ -1,0 +1,25 @@
+mkdir: cannot create directory '/scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/': File exists
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 0/256 [00:01<?, ?it/s]
+shape before mean (5, 64, 64, 64)
+shape after mean (64, 64, 64)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 230, in <module>
+    perform_inference_on_test_set(workspace=workspace)
+  File "/scratch-shared/ssommers/multitask_inference_ensembling.py", line 214, in perform_inference_on_test_set
+    "ggo_probability": nodule_type[0],
+IndexError: invalid index to scalar variable.
+
+JOB STATISTICS
+==============
+Job ID: 2841606
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:52:30 core-walltime
+Job Wall-clock time: 00:02:55
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.
