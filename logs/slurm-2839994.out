@@ -1,0 +1,31 @@
+[INFO][09:34:25] Created a temporary directory at /scratch-local/ssommers.2839994/tmp8zop2cbz
+[INFO][09:34:25] Writing /scratch-local/ssommers.2839994/tmp8zop2cbz/_remote_module_non_scriptable.py
+[INFO][09:34:27]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 421, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 330, in train
+    batch_data, mean, std = normalization(batch_data) # gets a dictionary???
+  File "/scratch-shared/ssommers/train-kieran4.py", line 43, in normalization
+    print(pandas.Dataframe.from_dict(x_train).shape)
+AttributeError: module 'pandas' has no attribute 'Dataframe'
+
+JOB STATISTICS
+==============
+Job ID: 2839994
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:23
+CPU Efficiency: 3.57% of 00:38:42 core-walltime
+Job Wall-clock time: 00:02:09
+Memory Utilized: 17.32 MB
+Memory Efficiency: 0.03% of 64.00 GB

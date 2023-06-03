@@ -1,0 +1,57 @@
+[INFO][12:54:28] Created a temporary directory at /scratch-local/ssommers.2839123/tmplk27edni
+[INFO][12:54:28] Writing /scratch-local/ssommers.2839123/tmplk27edni/_remote_module_non_scriptable.py
+[INFO][12:54:31]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_29_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 392, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 300, in train
+    for batch_data in tqdm(data):
+  File "/home/ssommers/.local/lib/python3.9/site-packages/tqdm/std.py", line 1178, in __iter__
+    for obj in iterable:
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
+    data = self._next_data()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/_utils.py", line 644, in reraise
+    raise exception
+AttributeError: Caught AttributeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/utils/data/dataset.py", line 243, in __getitem__
+    return self.datasets[dataset_idx][sample_idx]
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 359, in __getitem__
+    patch, mask, metad = self._extract_patch(pd)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 348, in _extract_patch
+    patch = enhance_contrast(patch)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 669, in enhance_contrast
+    image_equalized = np.interp(patch.flatten(), bins[:-1], cdf).float()
+AttributeError: 'numpy.ndarray' object has no attribute 'float'
+
+slurmstepd: error: *** JOB 2839123 ON gcn23 CANCELLED AT 2023-06-03T00:55:05 ***
+
+JOB STATISTICS
+==============
+Job ID: 2839123
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:29
+CPU Efficiency: 1.30% of 00:37:12 core-walltime
+Job Wall-clock time: 00:02:04
+Memory Utilized: 17.20 MB
+Memory Efficiency: 0.03% of 64.00 GB

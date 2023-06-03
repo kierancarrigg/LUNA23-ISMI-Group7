@@ -1,0 +1,31 @@
+[INFO][09:28:05] Created a temporary directory at /scratch-local/ssommers.2839963/tmpeyxg96zr
+[INFO][09:28:05] Writing /scratch-local/ssommers.2839963/tmpeyxg96zr/_remote_module_non_scriptable.py
+[INFO][09:28:08]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_30_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:04<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 419, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 328, in train
+    batch_data, mean, std = normalization(batch_data) # gets a dictionary???
+  File "/scratch-shared/ssommers/train-kieran4.py", line 48, in normalization
+    for feature in range(0, x_train.shape[1]):
+IndexError: tuple index out of range
+
+JOB STATISTICS
+==============
+Job ID: 2839963
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:19
+CPU Efficiency: 2.58% of 00:51:00 core-walltime
+Job Wall-clock time: 00:02:50
+Memory Utilized: 17.27 MB
+Memory Efficiency: 0.03% of 64.00 GB

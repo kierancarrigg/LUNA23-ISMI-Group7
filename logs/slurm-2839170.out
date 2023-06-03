@@ -1,0 +1,31 @@
+[INFO][01:24:46] Created a temporary directory at /scratch-local/ssommers.2839170/tmpmfd76ksw
+[INFO][01:24:46] Writing /scratch-local/ssommers.2839170/tmpmfd76ksw/_remote_module_non_scriptable.py
+folds found! :)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 392, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 261, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran4.py", line 194, in _initialize_data_loaders
+    self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate3.py", line 423, in get_data_loader
+    dataset_original.dataset, train_mean, train_std = normalization(dataset_original.dataset)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate3.py", line 56, in normalization
+    x_train = x_train.to_numpy(dtype=x_train.dtype)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/generic.py", line 5989, in __getattr__
+    return object.__getattribute__(self, name)
+AttributeError: 'DataFrame' object has no attribute 'dtype'
+
+JOB STATISTICS
+==============
+Job ID: 2839170
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:21
+CPU Efficiency: 0.66% of 00:52:48 core-walltime
+Job Wall-clock time: 00:02:56
+Memory Utilized: 404.59 MB
+Memory Efficiency: 0.62% of 64.00 GB

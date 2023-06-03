@@ -1,0 +1,25 @@
+[INFO][12:31:08] Created a temporary directory at /scratch-local/ssommers.2839072/tmp10oao_ma
+[INFO][12:31:08] Writing /scratch-local/ssommers.2839072/tmp10oao_ma/_remote_module_non_scriptable.py
+folds found! :)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 392, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 261, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran3.py", line 215, in _initialize_data_loaders
+    mean=self.train_mean,
+AttributeError: 'NoduleAnalyzer' object has no attribute 'train_mean'
+
+JOB STATISTICS
+==============
+Job ID: 2839072
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:20
+CPU Efficiency: 0.73% of 00:45:54 core-walltime
+Job Wall-clock time: 00:02:33
+Memory Utilized: 17.63 MB
+Memory Efficiency: 0.03% of 64.00 GB

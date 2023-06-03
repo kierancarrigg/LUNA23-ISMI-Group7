@@ -1,0 +1,50 @@
+[INFO][12:48:32] Created a temporary directory at /scratch-local/ssommers.2839102/tmphd574bl7
+[INFO][12:48:32] Writing /scratch-local/ssommers.2839102/tmphd574bl7/_remote_module_non_scriptable.py
+[INFO][12:48:37]  training, epoch: 1 / 400, with fold: 0
+folds found! :)
+Start of training model:  20230603_29_multitask_model
+
+
+
+  0%|          | 0/135 [00:00<?, ?it/s]  0%|          | 0/135 [00:11<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 392, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 304, in train
+    outputs, targets, losses = self.forward(
+  File "/scratch-shared/ssommers/train-kieran3.py", line 234, in forward
+    outputs = self.model(images)  # do the forward pass
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 177, in forward
+    latent = contract(latent)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/gpfs/scratch1/shared/ssommers/probeersel3lol.py", line 52, in forward
+    return self.pool_conv(incoming)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 613, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/ssommers/.local/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 608, in _conv_forward
+    return F.conv3d(
+RuntimeError: Input type (torch.cuda.DoubleTensor) and weight type (torch.cuda.FloatTensor) should be the same
+slurmstepd: error: *** JOB 2839102 ON gcn27 CANCELLED AT 2023-06-03T00:52:46 ***
+
+JOB STATISTICS
+==============
+Job ID: 2839102
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:07
+CPU Efficiency: 0.92% of 02:01:30 core-walltime
+Job Wall-clock time: 00:06:45
+Memory Utilized: 1.30 GB
+Memory Efficiency: 2.03% of 64.00 GB

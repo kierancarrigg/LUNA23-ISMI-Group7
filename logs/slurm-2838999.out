@@ -1,0 +1,35 @@
+[INFO][11:40:40] Created a temporary directory at /scratch-local/ssommers.2838999/tmplmqblq9l
+[INFO][11:40:40] Writing /scratch-local/ssommers.2838999/tmplmqblq9l/_remote_module_non_scriptable.py
+folds found! :)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 391, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 260, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran3.py", line 193, in _initialize_data_loaders
+    self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 424, in get_data_loader
+    dataset_original, train_mean, train_std = normalization(dataset_original)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 61, in normalization
+    mean.append(np.mean(x_train[:,feature])) # array of mean value per feature 
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 364, in __getitem__
+    patch, mask, metad = self._extract_patch(pd)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 294, in _extract_patch
+    image_path = self.cache / f"{pd.noduleid}_image.npy"
+  File "/home/ssommers/.local/lib/python3.9/site-packages/pandas/core/generic.py", line 5989, in __getattr__
+    return object.__getattribute__(self, name)
+AttributeError: 'Series' object has no attribute 'noduleid'
+
+JOB STATISTICS
+==============
+Job ID: 2838999
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:02:52
+CPU Efficiency: 3.25% of 01:28:12 core-walltime
+Job Wall-clock time: 00:04:54
+Memory Utilized: 1.75 GB
+Memory Efficiency: 2.73% of 64.00 GB
