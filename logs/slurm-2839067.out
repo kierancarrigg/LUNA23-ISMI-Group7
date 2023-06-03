@@ -1,0 +1,25 @@
+[INFO][12:29:21] Created a temporary directory at /scratch-local/ssommers.2839067/tmpm4__cyyp
+[INFO][12:29:21] Writing /scratch-local/ssommers.2839067/tmpm4__cyyp/_remote_module_non_scriptable.py
+folds found! :)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 391, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 260, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran3.py", line 193, in _initialize_data_loaders
+    self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
+ValueError: too many values to unpack (expected 3)
+
+JOB STATISTICS
+==============
+Job ID: 2839067
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:32
+CPU Efficiency: 2.62% of 00:58:30 core-walltime
+Job Wall-clock time: 00:03:15
+Memory Utilized: 845.41 MB
+Memory Efficiency: 1.29% of 64.00 GB

@@ -1,0 +1,272 @@
+  0%|          | 0/256 [00:00<?, ?it/s]  0%|          | 1/256 [00:02<08:38,  2.03s/it]  1%|          | 2/256 [00:02<04:06,  1.03it/s]  1%|          | 3/256 [00:02<02:50,  1.48it/s]  2%|▏         | 4/256 [00:02<01:54,  2.20it/s]  2%|▏         | 5/256 [00:02<01:36,  2.61it/s]  2%|▏         | 6/256 [00:03<01:13,  3.39it/s]  3%|▎         | 7/256 [00:03<01:00,  4.13it/s]  3%|▎         | 8/256 [00:03<00:54,  4.57it/s]  4%|▍         | 10/256 [00:03<00:41,  5.95it/s]  4%|▍         | 11/256 [00:03<00:41,  5.90it/s]  5%|▌         | 13/256 [00:04<00:36,  6.66it/s]  5%|▌         | 14/256 [00:04<00:35,  6.74it/s]  6%|▌         | 15/256 [00:04<00:34,  7.07it/s]  7%|▋         | 17/256 [00:04<00:30,  7.80it/s]  7%|▋         | 18/256 [00:04<00:29,  7.99it/s]  7%|▋         | 19/256 [00:04<00:30,  7.73it/s]  8%|▊         | 20/256 [00:05<00:57,  4.09it/s]  8%|▊         | 21/256 [00:05<00:54,  4.30it/s]  9%|▊         | 22/256 [00:05<00:47,  4.93it/s]  9%|▉         | 23/256 [00:05<00:41,  5.61it/s]  9%|▉         | 24/256 [00:05<00:38,  6.03it/s] 10%|▉         | 25/256 [00:06<00:36,  6.26it/s] 10%|█         | 26/256 [00:06<00:35,  6.40it/s] 11%|█         | 27/256 [00:06<00:39,  5.76it/s] 11%|█         | 28/256 [00:06<00:37,  6.12it/s] 12%|█▏        | 30/256 [00:06<00:31,  7.28it/s] 12%|█▏        | 31/256 [00:06<00:34,  6.53it/s] 12%|█▎        | 32/256 [00:07<00:34,  6.44it/s] 13%|█▎        | 34/256 [00:07<00:33,  6.72it/s] 14%|█▍        | 36/256 [00:07<00:29,  7.47it/s] 14%|█▍        | 37/256 [00:07<00:27,  7.85it/s] 15%|█▍        | 38/256 [00:07<00:28,  7.65it/s] 15%|█▌        | 39/256 [00:08<00:29,  7.42it/s] 16%|█▌        | 40/256 [00:08<00:33,  6.53it/s] 16%|█▋        | 42/256 [00:08<00:33,  6.39it/s] 17%|█▋        | 44/256 [00:08<00:27,  7.64it/s] 18%|█▊        | 45/256 [00:09<00:41,  5.07it/s] 18%|█▊        | 46/256 [00:09<00:48,  4.30it/s] 18%|█▊        | 47/256 [00:09<00:41,  4.99it/s] 19%|█▉        | 48/256 [00:09<00:36,  5.66it/s] 19%|█▉        | 49/256 [00:09<00:32,  6.34it/s] 20%|█▉        | 50/256 [00:09<00:30,  6.73it/s] 20%|█▉        | 51/256 [00:10<00:29,  6.95it/s] 21%|██        | 53/256 [00:10<00:24,  8.36it/s] 21%|██▏       | 55/256 [00:10<00:22,  8.80it/s] 22%|██▏       | 56/256 [00:10<00:24,  8.25it/s] 22%|██▏       | 57/256 [00:10<00:24,  8.13it/s] 23%|██▎       | 58/256 [00:10<00:25,  7.83it/s] 23%|██▎       | 60/256 [00:11<00:30,  6.51it/s] 24%|██▍       | 61/256 [00:11<00:30,  6.44it/s] 25%|██▍       | 63/256 [00:11<00:25,  7.47it/s] 25%|██▌       | 64/256 [00:11<00:25,  7.65it/s] 25%|██▌       | 65/256 [00:11<00:24,  7.65it/s] 26%|██▌       | 66/256 [00:12<00:25,  7.40it/s] 27%|██▋       | 68/256 [00:12<00:23,  8.10it/s] 27%|██▋       | 70/256 [00:12<00:21,  8.53it/s] 28%|██▊       | 71/256 [00:12<00:23,  7.98it/s] 28%|██▊       | 72/256 [00:12<00:23,  7.89it/s] 29%|██▊       | 73/256 [00:12<00:22,  8.05it/s] 29%|██▉       | 75/256 [00:13<00:19,  9.36it/s] 30%|███       | 77/256 [00:13<00:19,  9.05it/s] 31%|███       | 79/256 [00:13<00:19,  8.94it/s] 32%|███▏      | 81/256 [00:13<00:20,  8.70it/s] 32%|███▏      | 83/256 [00:13<00:19,  9.09it/s] 33%|███▎      | 85/256 [00:14<00:18,  9.39it/s] 34%|███▎      | 86/256 [00:14<00:18,  9.12it/s] 34%|███▍      | 87/256 [00:14<00:18,  8.98it/s] 34%|███▍      | 88/256 [00:14<00:20,  8.08it/s] 35%|███▍      | 89/256 [00:14<00:22,  7.54it/s] 35%|███▌      | 90/256 [00:14<00:24,  6.79it/s] 36%|███▌      | 91/256 [00:15<00:22,  7.37it/s] 36%|███▌      | 92/256 [00:15<00:26,  6.23it/s] 36%|███▋      | 93/256 [00:15<00:27,  6.02it/s] 37%|███▋      | 94/256 [00:15<00:25,  6.35it/s] 37%|███▋      | 95/256 [00:15<00:24,  6.57it/s] 38%|███▊      | 96/256 [00:15<00:23,  6.91it/s] 38%|███▊      | 97/256 [00:15<00:23,  6.86it/s] 38%|███▊      | 98/256 [00:16<00:21,  7.49it/s] 39%|███▊      | 99/256 [00:16<00:29,  5.41it/s] 39%|███▉      | 100/256 [00:16<00:30,  5.17it/s] 40%|███▉      | 102/256 [00:17<00:42,  3.60it/s] 40%|████      | 103/256 [00:17<00:39,  3.86it/s] 41%|████      | 104/256 [00:17<00:36,  4.11it/s] 41%|████      | 105/256 [00:17<00:31,  4.79it/s] 41%|████▏     | 106/256 [00:18<00:35,  4.27it/s] 42%|████▏     | 107/256 [00:18<00:31,  4.74it/s] 42%|████▏     | 108/256 [00:18<00:33,  4.42it/s] 43%|████▎     | 109/256 [00:18<00:29,  4.94it/s] 43%|████▎     | 110/256 [00:18<00:26,  5.46it/s] 43%|████▎     | 111/256 [00:18<00:24,  5.98it/s] 44%|████▍     | 112/256 [00:19<00:28,  5.06it/s] 44%|████▍     | 113/256 [00:19<00:24,  5.82it/s] 45%|████▍     | 114/256 [00:19<00:21,  6.48it/s] 45%|████▍     | 115/256 [00:19<00:21,  6.63it/s] 45%|████▌     | 116/256 [00:19<00:23,  5.86it/s] 46%|████▌     | 117/256 [00:19<00:21,  6.45it/s] 46%|████▋     | 119/256 [00:20<00:17,  7.67it/s] 47%|████▋     | 120/256 [00:20<00:17,  7.96it/s] 47%|████▋     | 121/256 [00:20<00:17,  7.65it/s] 48%|████▊     | 122/256 [00:20<00:19,  6.97it/s] 48%|████▊     | 124/256 [00:20<00:16,  8.07it/s] 49%|████▉     | 126/256 [00:21<00:15,  8.16it/s] 50%|████▉     | 127/256 [00:21<00:15,  8.15it/s] 50%|█████     | 128/256 [00:21<00:15,  8.32it/s] 50%|█████     | 129/256 [00:21<00:16,  7.65it/s] 51%|█████     | 130/256 [00:21<00:16,  7.84it/s] 51%|█████     | 131/256 [00:21<00:17,  7.29it/s] 52%|█████▏    | 132/256 [00:21<00:17,  6.89it/s] 52%|█████▏    | 133/256 [00:22<00:20,  5.88it/s] 52%|█████▏    | 134/256 [00:22<00:18,  6.47it/s] 53%|█████▎    | 135/256 [00:22<00:19,  6.17it/s] 53%|█████▎    | 136/256 [00:22<00:23,  5.10it/s] 54%|█████▍    | 138/256 [00:22<00:18,  6.23it/s] 54%|█████▍    | 139/256 [00:23<00:17,  6.54it/s] 55%|█████▌    | 141/256 [00:23<00:14,  7.81it/s] 56%|█████▌    | 143/256 [00:23<00:13,  8.58it/s] 56%|█████▋    | 144/256 [00:23<00:13,  8.58it/s] 57%|█████▋    | 145/256 [00:23<00:13,  8.13it/s] 57%|█████▋    | 146/256 [00:23<00:13,  8.29it/s] 57%|█████▋    | 147/256 [00:23<00:14,  7.30it/s] 58%|█████▊    | 148/256 [00:24<00:16,  6.44it/s] 58%|█████▊    | 149/256 [00:24<00:23,  4.59it/s] 59%|█████▊    | 150/256 [00:24<00:20,  5.30it/s] 59%|█████▉    | 152/256 [00:24<00:15,  6.74it/s] 60%|█████▉    | 153/256 [00:25<00:15,  6.66it/s] 60%|██████    | 154/256 [00:25<00:19,  5.19it/s] 61%|██████    | 155/256 [00:25<00:17,  5.94it/s] 61%|██████    | 156/256 [00:25<00:14,  6.67it/s] 61%|██████▏   | 157/256 [00:25<00:13,  7.23it/s] 62%|██████▏   | 158/256 [00:25<00:12,  7.84it/s] 62%|██████▏   | 159/256 [00:25<00:13,  7.37it/s] 62%|██████▎   | 160/256 [00:26<00:15,  6.31it/s] 63%|██████▎   | 161/256 [00:26<00:14,  6.51it/s] 64%|██████▎   | 163/256 [00:26<00:12,  7.31it/s] 64%|██████▍   | 164/256 [00:26<00:12,  7.19it/s] 64%|██████▍   | 165/256 [00:26<00:11,  7.67it/s] 65%|██████▌   | 167/256 [00:27<00:11,  7.92it/s] 66%|██████▌   | 168/256 [00:27<00:11,  7.91it/s] 66%|██████▌   | 169/256 [00:27<00:14,  6.04it/s] 66%|██████▋   | 170/256 [00:27<00:12,  6.71it/s] 67%|██████▋   | 171/256 [00:27<00:14,  5.91it/s] 67%|██████▋   | 172/256 [00:27<00:13,  6.19it/s] 68%|██████▊   | 173/256 [00:28<00:12,  6.76it/s] 68%|██████▊   | 174/256 [00:28<00:12,  6.57it/s] 68%|██████▊   | 175/256 [00:28<00:11,  7.01it/s] 69%|██████▉   | 176/256 [00:28<00:10,  7.54it/s] 69%|██████▉   | 177/256 [00:28<00:15,  5.04it/s] 70%|██████▉   | 178/256 [00:29<00:16,  4.64it/s] 70%|██████▉   | 179/256 [00:29<00:14,  5.21it/s] 70%|███████   | 180/256 [00:29<00:17,  4.46it/s] 71%|███████   | 181/256 [00:29<00:15,  4.95it/s] 71%|███████   | 182/256 [00:29<00:12,  5.74it/s] 71%|███████▏  | 183/256 [00:29<00:13,  5.61it/s] 72%|███████▏  | 184/256 [00:30<00:11,  6.19it/s] 72%|███████▏  | 185/256 [00:30<00:17,  3.99it/s] 73%|███████▎  | 187/256 [00:30<00:12,  5.59it/s] 73%|███████▎  | 188/256 [00:30<00:11,  6.08it/s] 74%|███████▍  | 189/256 [00:30<00:11,  5.65it/s] 74%|███████▍  | 190/256 [00:31<00:11,  5.72it/s] 75%|███████▍  | 191/256 [00:31<00:10,  6.21it/s] 75%|███████▌  | 192/256 [00:31<00:09,  6.66it/s] 75%|███████▌  | 193/256 [00:31<00:09,  6.93it/s] 76%|███████▌  | 194/256 [00:31<00:08,  7.45it/s] 76%|███████▌  | 195/256 [00:31<00:08,  7.61it/s] 77%|███████▋  | 196/256 [00:31<00:08,  7.15it/s] 77%|███████▋  | 197/256 [00:32<00:13,  4.45it/s] 77%|███████▋  | 198/256 [00:32<00:10,  5.30it/s] 78%|███████▊  | 199/256 [00:32<00:09,  5.98it/s] 78%|███████▊  | 200/256 [00:32<00:08,  6.54it/s] 79%|███████▊  | 201/256 [00:32<00:08,  6.16it/s] 79%|███████▉  | 203/256 [00:33<00:07,  7.54it/s] 80%|███████▉  | 204/256 [00:33<00:07,  7.13it/s] 80%|████████  | 205/256 [00:33<00:09,  5.52it/s] 80%|████████  | 206/256 [00:33<00:08,  5.83it/s] 81%|████████  | 207/256 [00:33<00:08,  5.54it/s] 81%|████████▏ | 208/256 [00:34<00:10,  4.71it/s] 82%|████████▏ | 209/256 [00:34<00:08,  5.33it/s] 82%|████████▏ | 210/256 [00:34<00:08,  5.60it/s] 82%|████████▏ | 211/256 [00:34<00:09,  4.78it/s] 83%|████████▎ | 213/256 [00:34<00:06,  6.33it/s] 84%|████████▎ | 214/256 [00:35<00:06,  6.67it/s] 84%|████████▍ | 215/256 [00:35<00:06,  6.45it/s] 84%|████████▍ | 216/256 [00:35<00:05,  6.81it/s] 85%|████████▍ | 217/256 [00:35<00:07,  5.55it/s] 86%|████████▌ | 219/256 [00:35<00:05,  7.02it/s] 86%|████████▌ | 220/256 [00:35<00:05,  7.03it/s] 86%|████████▋ | 221/256 [00:36<00:04,  7.17it/s] 87%|████████▋ | 222/256 [00:36<00:04,  7.45it/s] 87%|████████▋ | 223/256 [00:36<00:04,  6.83it/s] 88%|████████▊ | 225/256 [00:36<00:03,  7.93it/s] 88%|████████▊ | 226/256 [00:36<00:03,  8.07it/s] 89%|████████▉ | 228/256 [00:36<00:03,  8.35it/s] 89%|████████▉ | 229/256 [00:37<00:03,  7.85it/s] 90%|████████▉ | 230/256 [00:37<00:03,  8.03it/s] 90%|█████████ | 231/256 [00:37<00:03,  7.78it/s] 91%|█████████ | 233/256 [00:37<00:03,  6.99it/s] 91%|█████████▏| 234/256 [00:37<00:03,  7.04it/s] 92%|█████████▏| 235/256 [00:37<00:02,  7.44it/s] 92%|█████████▏| 236/256 [00:38<00:02,  7.73it/s] 93%|█████████▎| 237/256 [00:38<00:02,  7.86it/s] 93%|█████████▎| 238/256 [00:38<00:02,  8.26it/s] 93%|█████████▎| 239/256 [00:38<00:02,  6.69it/s] 94%|█████████▍| 240/256 [00:38<00:02,  6.96it/s] 94%|█████████▍| 241/256 [00:38<00:02,  7.22it/s] 95%|█████████▍| 242/256 [00:38<00:01,  7.19it/s] 95%|█████████▌| 244/256 [00:39<00:01,  8.09it/s] 96%|█████████▌| 245/256 [00:39<00:01,  7.96it/s] 96%|█████████▋| 247/256 [00:39<00:01,  8.83it/s] 97%|█████████▋| 248/256 [00:39<00:00,  8.07it/s] 97%|█████████▋| 249/256 [00:39<00:00,  7.83it/s] 98%|█████████▊| 250/256 [00:39<00:00,  7.87it/s] 98%|█████████▊| 251/256 [00:39<00:00,  7.77it/s] 98%|█████████▊| 252/256 [00:40<00:00,  8.26it/s] 99%|█████████▉| 254/256 [00:40<00:00,  9.59it/s]100%|██████████| 256/256 [00:40<00:00,  9.53it/s]100%|██████████| 256/256 [00:40<00:00,  6.33it/s]
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+
+JOB STATISTICS
+==============
+Job ID: 2838766
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: RUNNING
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:43:48 core-walltime
+Job Wall-clock time: 00:02:26
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 64.00 GB (64.00 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

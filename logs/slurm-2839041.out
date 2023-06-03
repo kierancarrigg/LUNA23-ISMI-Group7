@@ -1,0 +1,35 @@
+[INFO][12:17:00] Created a temporary directory at /scratch-local/ssommers.2839041/tmpvtldi93z
+[INFO][12:17:00] Writing /scratch-local/ssommers.2839041/tmpvtldi93z/_remote_module_non_scriptable.py
+folds found! :)
+(539, 9)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 391, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 260, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran3.py", line 193, in _initialize_data_loaders
+    self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 426, in get_data_loader
+    dataset_original.dataset, train_mean, train_std = normalization(dataset_original.dataset)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 63, in normalization
+    mean.append(np.mean(x_train[:,feature])) # array of mean value per feature 
+  File "<__array_function__ internals>", line 200, in mean
+  File "/home/ssommers/.local/lib/python3.9/site-packages/numpy/core/fromnumeric.py", line 3464, in mean
+    return _methods._mean(a, axis=axis, dtype=dtype,
+  File "/home/ssommers/.local/lib/python3.9/site-packages/numpy/core/_methods.py", line 194, in _mean
+    ret = ret / rcount
+TypeError: ufunc 'divide' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+
+JOB STATISTICS
+==============
+Job ID: 2839041
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:21
+CPU Efficiency: 0.54% of 01:05:06 core-walltime
+Job Wall-clock time: 00:03:37
+Memory Utilized: 17.30 MB
+Memory Efficiency: 0.03% of 64.00 GB

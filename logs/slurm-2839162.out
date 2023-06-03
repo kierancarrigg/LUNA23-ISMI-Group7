@@ -1,0 +1,31 @@
+[INFO][01:10:53] Created a temporary directory at /scratch-local/ssommers.2839162/tmppij621u4
+[INFO][01:10:53] Writing /scratch-local/ssommers.2839162/tmppij621u4/_remote_module_non_scriptable.py
+folds found! :)
+(539, 9)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran4.py", line 392, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran4.py", line 261, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran4.py", line 194, in _initialize_data_loaders
+    self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate3.py", line 419, in get_data_loader
+    dataset_original.dataset, train_mean, train_std = normalization(dataset_original.dataset)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate3.py", line 63, in normalization
+    mean.append(np.mean(x_train[:,feature], dtype=x_train[:,feature].dtypes)) # array of mean value per feature 
+AttributeError: 'numpy.ndarray' object has no attribute 'dtypes'
+slurmstepd: error: *** JOB 2839162 ON gcn19 CANCELLED AT 2023-06-03T01:11:52 ***
+
+JOB STATISTICS
+==============
+Job ID: 2839162
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:09
+CPU Efficiency: 0.40% of 00:37:12 core-walltime
+Job Wall-clock time: 00:02:04
+Memory Utilized: 17.29 MB
+Memory Efficiency: 0.03% of 64.00 GB

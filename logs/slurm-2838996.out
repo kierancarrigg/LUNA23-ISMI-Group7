@@ -1,0 +1,38 @@
+[INFO][11:37:09] Created a temporary directory at /scratch-local/ssommers.2838996/tmp7ybjwozs
+[INFO][11:37:09] Writing /scratch-local/ssommers.2838996/tmp7ybjwozs/_remote_module_non_scriptable.py
+folds found! :)
+Traceback (most recent call last):
+  File "/scratch-shared/ssommers/train-kieran3.py", line 389, in <module>
+    nodule_analyzer.train(model)
+  File "/scratch-shared/ssommers/train-kieran3.py", line 260, in train
+    self._initialize_data_loaders()
+  File "/scratch-shared/ssommers/train-kieran3.py", line 193, in _initialize_data_loaders
+    self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 427, in get_data_loader
+    dataset_original, train_mean, train_std = normalization(dataset_original)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 56, in normalization
+    x_train_normalized = np.zeros_like(x_train) # array of normalized features
+  File "<__array_function__ internals>", line 200, in zeros_like
+  File "/home/ssommers/.local/lib/python3.9/site-packages/numpy/core/numeric.py", line 139, in zeros_like
+    res = empty_like(a, dtype=dtype, order=order, subok=subok, shape=shape)
+  File "<__array_function__ internals>", line 200, in empty_like
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 367, in __getitem__
+    patch, mask, metad = self._extract_patch(pd)
+  File "/gpfs/scratch1/shared/ssommers/dataloaderDuplicate2.py", line 332, in _extract_patch
+    patch, mask = extract_patch(
+TypeError: extract_patch() got an unexpected keyword argument 'contrast_modify'
+slurmstepd: error: *** JOB 2838996 ON gcn10 CANCELLED AT 2023-06-02T23:38:47 ***
+
+JOB STATISTICS
+==============
+Job ID: 2838996
+Cluster: snellius
+User/Group: ssommers/ssommers
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:10
+CPU Efficiency: 0.27% of 01:02:06 core-walltime
+Job Wall-clock time: 00:03:27
+Memory Utilized: 17.27 MB
+Memory Efficiency: 0.03% of 64.00 GB
