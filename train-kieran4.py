@@ -1,11 +1,11 @@
 import sys
 import pandas
-import dataloaderDuplicate as dataloader
+import dataloaderDuplicate3 as dataloader
 import torch
 import torch.nn.functional as F
 from pathlib import Path
 from tqdm import tqdm
-import probeersel2opnieuw as probeersel
+import probeersel3lol as probeersel
 import numpy as np
 from datetime import datetime
 from sklearn.model_selection import StratifiedKFold
@@ -34,7 +34,6 @@ def dice_loss(input, target):
     intersection = (iflat * tflat).sum()
 
     return 1 - ((2.0 * intersection + smooth) / (iflat.sum() + tflat.sum() + smooth))
-
 
 def make_development_splits(
     train_set: pandas.DataFrame,
@@ -293,11 +292,10 @@ class NoduleAnalyzer:
 
                 predictions = {task: [] for task in self.tasks}
                 labels = {task: [] for task in self.tasks}
-
+                counter = 0
                 for batch_data in tqdm(data):
 
                     if mode == "training":
-
                         outputs, targets, losses = self.forward(
                             batch_data,
                             update_weights=True,
@@ -376,11 +374,11 @@ if __name__ == "__main__":
 
     
     
-    for i in range(4,5):
+    for i in range(1):
         model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="22_multitask_model", 
+                                        experiment_id="33_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)

@@ -1,11 +1,10 @@
 import sys
 import pandas
-import dataloaderDuplicate as dataloader
+import dataloaderDuplicate2 as dataloader
 import torch
 import torch.nn.functional as F
 from pathlib import Path
 from tqdm import tqdm
-# import probeersel2opnieuw as probeersel
 import probeersel3lol as probeersel
 import numpy as np
 from datetime import datetime
@@ -192,6 +191,7 @@ class NoduleAnalyzer:
         )
 
         self.train_loader = dataloader.get_data_loader(
+        # self.train_loader, self.train_mean, self.train_std = dataloader.get_data_loader(
             self.workspace / "data" / "train_set",
             self.train_df,
             sampler=sampler,
@@ -212,6 +212,8 @@ class NoduleAnalyzer:
             batch_size=self.batch_size,
             size_mm=self.size_mm,
             size_px=self.size_px,
+            # mean=self.train_mean,
+            # std = self.train_std,
             patch_size=self.patch_size
         )
 
@@ -365,6 +367,8 @@ class NoduleAnalyzer:
                 print(metrics.to_markdown(tablefmt="grid"))
 
             np.save(save_dir / "metrics.npy", epoch_metrics)
+            # np.save(save_dir / "norm_mean.npy", self.train_mean)
+            # np.save(save_dir / "norm_std.npy", self.train_std)
         # torch.save(self.model.state_dict(), save_dir / "last_model.pth")
 
 if __name__ == "__main__":
@@ -381,7 +385,7 @@ if __name__ == "__main__":
         model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="25_multitask_model", 
+                                        experiment_id="31_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)
