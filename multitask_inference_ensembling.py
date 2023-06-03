@@ -60,20 +60,12 @@ def perform_inference_on_test_set(workspace: Path):
         model_name = f"multitask_model_{i}"
         model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True).cuda()
         model.eval()
-        ckpt = torch.load(workspace / "results" / "20230528_20_multitask_model"/ f"fold{i}" / "best_model.pth")
+        ckpt = torch.load(workspace / "results" / "20230529_22_multitask_model"/ f"fold{i}" / "best_model.pth")
         model.load_state_dict(ckpt)
         models[model_name] = model
-    
-    # multitask_model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True).cuda()
-
-    # multitask_model.eval()
-
-    # ⚠️ make sure to adjust this path
-    # ckpt = torch.load(workspace / "results" / "20230602_25_multitask_model "/ f"fold{i}" / "best_model.pth")
-    # multitask_model.load_state_dict(ckpt)
 
     test_set_path = Path(workspace / "data" / "test_set" / "images")
-    save_path = workspace / "results" / "20230528_20_multitask_model" / "test_set_predictions" #/ "fold0" / "test_set_predictions"
+    save_path = workspace / "results" / "20230529_22_multitask_model" / "test_set_predictions_max"
 
     segmentation_save_path = save_path / "segmentations"
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
@@ -181,7 +173,7 @@ def perform_inference_on_test_set(workspace: Path):
         # apply threshold
         segmentations = np.array(segmentations)
         print("shape before mean", segmentations.shape)
-        segmentation = np.mean(segmentations, axis=0)
+        segmentation = np.max(segmentations, axis=0)
         segmentation = (segmentation > 0.5).astype(np.uint8)
         print("shape after mean", segmentation.shape)
         # set metadata
@@ -204,8 +196,8 @@ def perform_inference_on_test_set(workspace: Path):
         noduletypes = np.array(noduletypes)
         malignancies = np.array(malignancies)
 
-        nodule_type = np.mean(noduletypes, axis=0)
-        malignancy = np.mean(malignancies, axis=0)
+        nodule_type = np.max(noduletypes, axis=0)
+        malignancy = np.max(malignancies, axis=0)
 
         # combine predictions from other task models
         prediction = {
