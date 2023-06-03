@@ -2,7 +2,7 @@
 import sys
 import torch
 import probeersel2opnieuw as probeersel
-import dataloaderDuplicate as dataloader
+import dataloader as dataloader
 import numpy as np
 import SimpleITK as sitk
 from typing import Tuple
@@ -140,15 +140,15 @@ def perform_inference_on_test_set(workspace: Path):
         # post-process segmentation
 
         # resample image to original spacing
-        for segmentation in segmentations:
-            segmentation = snd.zoom(
-                segmentation,
+        for i in range(len(segmentations)):
+            segmentations[i] = snd.zoom(
+                segmentations[i],
                 (size_mm / size_px) / metad["spacing"],
                 order=1,
             )
 
             # pad image
-            diff = metad["shape"] - segmentation.shape
+            diff = metad["shape"] - segmentations[i].shape
             pad_widths = [
                 (np.round(a), np.round(b))
                 for a, b in zip(
@@ -158,8 +158,8 @@ def perform_inference_on_test_set(workspace: Path):
             ]
             pad_widths = np.array(pad_widths).astype(int)
             pad_widths = np.clip(pad_widths, 0, pad_widths.max())
-            segmentation = np.pad(
-                segmentation,
+            segmentations[i] = np.pad(
+                segmentations[i],
                 pad_width=pad_widths,
                 mode="constant",
                 constant_values=0,
@@ -168,14 +168,15 @@ def perform_inference_on_test_set(workspace: Path):
             # crop, if necessary
             if diff.min() < 0:
 
-                shape = np.array(segmentation.shape)
+                shape = np.array(segmentations[i].shape)
                 center = shape // 2
 
-                segmentation = segmentation[
+                segmentations[i] = segmentations[i][
                     center[0] - patch_size[0] // 2 : center[0] + patch_size[0] // 2,
                     center[1] - patch_size[1] // 2 : center[1] + patch_size[1] // 2,
                     center[2] - patch_size[2] // 2 : center[2] + patch_size[2] // 2,
                 ]
+            print(segmentations[i].shape)
 
         # apply threshold
         segmentations = np.array(segmentations)

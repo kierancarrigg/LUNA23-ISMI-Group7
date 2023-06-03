@@ -15,18 +15,18 @@ module load Python/3.9.5-GCCcore-10.3.0
 
 # Copy files to local scratch space
 cp -r data/ /scratch-shared/ssommers/
-cp dataloaderDuplicate.py /scratch-shared/ssommers/
+cp bodyct-luna23-ismi-trainer/dataloader.py /scratch-shared/ssommers/
 cp probeersel2opnieuw.py /scratch-shared/ssommers/
-cp multitask_inference.py /scratch-shared/ssommers/
+cp multitask_inference_ensembling.py /scratch-shared/ssommers/
 # cp -r results/ /scratch-shared/ssommers/
 cp -r results/20230528_20_multitask_model/ /scratch-shared/ssommers/results/
-mkdir /scratch-shared/ssommers/results/20230528_20_multitask_model/fold1/test_set_predictions2/
+mkdir /scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/
 
 # Set project directory to scratch space
 project_dir=/scratch-shared/ssommers/
 
 # Execute program
-python /scratch-shared/ssommers/multitask_inference.py $project_dir
+python /scratch-shared/ssommers/multitask_inference_ensembling.py $project_dir
 
 # Copy results from scratch space
-cp -r /scratch-shared/ssommers/results/20230528_20_multitask_model/fold1/test_set_predictions2/ results/20230528_20_multitask_model/fold1/
+cp -r /scratch-shared/ssommers/results/20230528_20_multitask_model/test_set_predictions/ results/20230528_20_multitask_model/

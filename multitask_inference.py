@@ -1,7 +1,7 @@
 
 import sys
 import torch
-import probeersel2opnieuw as probeersel
+import probeersel3lol as probeersel
 import dataloaderDuplicate as dataloader
 import numpy as np
 import SimpleITK as sitk
@@ -60,11 +60,11 @@ def perform_inference_on_test_set(workspace: Path):
     multitask_model.eval()
 
     # ⚠️ make sure to adjust this path
-    ckpt = torch.load(workspace / "results/20230528_20_multitask_model/fold1/best_model.pth")
+    ckpt = torch.load(workspace / "results/20230528_20_multitask_model/fold0/best_model.pth")
     multitask_model.load_state_dict(ckpt)
 
     test_set_path = Path(workspace / "data" / "test_set" / "images")
-    save_path = workspace / "results" / "20230528_20_multitask_model" / "fold1" / "test_set_predictions2"
+    save_path = workspace / "results" / "20230528_20_multitask_model" / "fold0" / "test_set_predictions"
 
     segmentation_save_path = save_path / "segmentations"
     segmentation_save_path.mkdir(exist_ok=True, parents=True)
@@ -109,8 +109,6 @@ def perform_inference_on_test_set(workspace: Path):
 
         image = image.reshape(1, 1, size_px, size_px, size_px).astype(np.float32)
         image = dataloader.clip_and_scale(image)
-
-        print(type(image))
 
         image = torch.from_numpy(image).cuda()
 
@@ -164,6 +162,7 @@ def perform_inference_on_test_set(workspace: Path):
         segmentation = (segmentation > 0.5).astype(np.uint8)
 
         # set metadata
+        print(segmentation.shape)
         segmentation = sitk.GetImageFromArray(segmentation)
         segmentation.SetOrigin(np.flip(metad["origin"]))
         segmentation.SetSpacing(np.flip(metad["spacing"]))
