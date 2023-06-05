@@ -173,7 +173,7 @@ def perform_inference_on_test_set(workspace: Path):
         # apply threshold
         segmentations = np.array(segmentations)
         print("shape before mean", segmentations.shape)
-        segmentation = np.max(segmentations, axis=0)
+        segmentation = np.mean(segmentations, axis=0)
         segmentation = (segmentation > 0.5).astype(np.uint8)
         print("shape after mean", segmentation.shape)
         # set metadata
@@ -196,8 +196,8 @@ def perform_inference_on_test_set(workspace: Path):
         noduletypes = np.array(noduletypes)
         malignancies = np.array(malignancies)
 
-        nodule_type = np.max(noduletypes, axis=0)
-        malignancy = np.max(malignancies, axis=0)
+        nodule_type = np.mean(noduletypes, axis=0)
+        malignancy = np.mean(malignancies, axis=0)
 
         # combine predictions from other task models
         prediction = {
