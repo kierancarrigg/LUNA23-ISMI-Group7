@@ -1,8 +1,8 @@
 
 import sys
 import torch
-import probeersel2opnieuw as probeersel
-import dataloader as dataloader
+import multitask_network
+import dataloader
 import numpy as np
 import SimpleITK as sitk
 from typing import Tuple
@@ -58,7 +58,7 @@ def perform_inference_on_test_set(workspace: Path):
     models = {}
     for i in range(5):
         model_name = f"multitask_model_{i}"
-        model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True).cuda()
+        model = multitask_network.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True).cuda()
         model.eval()
         ckpt = torch.load(workspace / "results" / "20230529_22_multitask_model"/ f"fold{i}" / "best_model.pth")
         model.load_state_dict(ckpt)

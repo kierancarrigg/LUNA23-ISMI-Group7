@@ -1,11 +1,11 @@
 import sys
 import pandas
-import dataloaderDuplicate as dataloader
+import dataloader
 import torch
 import torch.nn.functional as F
 from pathlib import Path
 from tqdm import tqdm
-import probeersel
+import multitask_network
 import numpy as np
 from datetime import datetime
 from sklearn.model_selection import StratifiedKFold
@@ -159,6 +159,7 @@ class NoduleAnalyzer:
         self.optimizer = torch.optim.Adam(
             self.model.parameters(),
             lr=self.learning_rate,
+            weight_decay=1e-2,
         )
 
         # define the scheduler
@@ -185,7 +186,8 @@ class NoduleAnalyzer:
         weights = torch.DoubleTensor(weights)
         sampler = torch.utils.data.sampler.WeightedRandomSampler(
             weights,
-            num_samples = 4 * len(self.train_df),
+            num_samples = 4 * len(self.train_df), # 🍕 (uncomment for data augmentation)
+            # num_samples = len(self.train_df) 
         )
 
         self.train_loader = dataloader.get_data_loader(
@@ -374,11 +376,11 @@ if __name__ == "__main__":
 
     
     
-    for i in range(1):
-        model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64)
+    for i in range(4,5):
+        model = multitask_network.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True)
         nodule_analyzer = NoduleAnalyzer(workspace=workspace, 
                                         best_metric_fn=best_metric_fn, 
-                                        experiment_id="8_multitask_model", 
+                                        experiment_id="22_multitask_model", 
                                         batch_size=16, 
                                         fold=i, 
                                         max_epochs=400)

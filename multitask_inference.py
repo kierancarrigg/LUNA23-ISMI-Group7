@@ -1,8 +1,8 @@
 
 import sys
 import torch
-import probeersel3lol as probeersel
-import dataloaderDuplicate as dataloader
+import multitask_network
+import dataloader
 import numpy as np
 import SimpleITK as sitk
 from typing import Tuple
@@ -55,7 +55,7 @@ def keep_central_connected_component(
 
 def perform_inference_on_test_set(workspace: Path):
 
-    multitask_model = probeersel.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True).cuda()
+    multitask_model = multitask_network.MultiTaskNetwork(n_input_channels=1, n_filters=64, dropout=True).cuda()
 
     multitask_model.eval()
 
