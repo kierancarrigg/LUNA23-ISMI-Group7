@@ -1,7 +1,7 @@
 # LUNA23-ISMI-Group7
 
 ## Members
-=Kieran Carigg (s4792882)
+-Kieran Carigg (s4792882)
 -Eline Braun (s1010232)
 -Lisa Hensens (s1018583)
 -Serah Sommers (s1015986)
