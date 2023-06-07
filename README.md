@@ -1,4 +1,11 @@
 # LUNA23-ISMI-Group7
+
+## Members
+Kieran Carigg (s4792882)
+Eline Braun (s1010232)
+Lisa Hensens (s1018583)
+Serah Sommers (s1015986) 
+
 ## Abstract
 Lung cancer is the most common cancer type and results in millions of cases and deaths worldwide. Deep learning techniques are a potential solution to speed up the diagnosis process, as they automate processes to decrease time and healthcare costs. 
 This paper proposes a multi-task deep learning model for segmentation, nodule type classification, and malignancy risk classification using CT scan images of lungs. It uses a U-Net architecture including shared feature extraction in the contraction space. Data augmentation (i.e. translation, rotation, and a combination of translation and rotation) is applied to generate more data. Additionally, class weights are used to solve the class imbalance problem. The proposed model also includes batch normalization, dropout, weight decay, and parameter sharing for regularization. The results show potential for using a multi-task learning model in diagnostic image analysis.
