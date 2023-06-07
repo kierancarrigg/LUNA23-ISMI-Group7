@@ -1,10 +1,10 @@
 # LUNA23-ISMI-Group7
 
 ## Members
-Kieran Carigg (s4792882)\\
-Eline Braun (s1010232)\\
-Lisa Hensens (s1018583)\\
-Serah Sommers (s1015986)\\
+=Kieran Carigg (s4792882)
+-Eline Braun (s1010232)
+-Lisa Hensens (s1018583)
+-Serah Sommers (s1015986)
 
 ## Abstract
 Lung cancer is the most common cancer type and results in millions of cases and deaths worldwide. Deep learning techniques are a potential solution to speed up the diagnosis process, as they automate processes to decrease time and healthcare costs. 
